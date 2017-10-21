@@ -7,7 +7,7 @@ Client::Client():
 {
     connect(_connection,
             QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
-            this, Client::displayError());
+            this, &Client::displayError);
 #ifndef NDEBUG
     qDebug("Client created.");
 #endif
@@ -40,7 +40,7 @@ void Client::ping()
 void Client::readResponse()
 {
     QByteArray arr = _connection->readAll();
-    qDebug(QString(arr));
+    qDebug(arr);
 }
 
 void Client::displayError()

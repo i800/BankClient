@@ -1,8 +1,8 @@
 #ifndef CLIENT_H
 #define CLIENT_H
-#include <QtNetwork/QTcpSocket>
+#include <QTcpSocket>
 
-class Client : QObject
+class Client : public QObject
 {
     Q_OBJECT
 private:

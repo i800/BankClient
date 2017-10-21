@@ -6,6 +6,8 @@ class Client : QObject
 {
     Q_OBJECT
 private:
+    bool _isPending;
+    QTcpSocket* _connection;
     Client(const Client&) = delete;
     Client& operator=(const Client&) = delete;
 public:
@@ -16,7 +18,8 @@ public:
     // For testing.
     void ping();
 private slots:
-    void serverConnected();
+    void readResponse();
+    void displayError();
 };
 
 #endif // CLIENT_H

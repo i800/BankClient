@@ -2,6 +2,10 @@
 #define CLIENT_H
 #include <QTcpSocket>
 
+namespace Protocol {
+    class Packet;
+}
+
 class Client : public QObject
 {
     Q_OBJECT
@@ -15,7 +19,7 @@ public:
     ~Client();
     void start(const char* host = "localhost",
                const unsigned short port = 45654);
-    // For testing.
+    void sendPacket(const Protocol::Packet&);
     void ping();
 private slots:
     void readResponse();

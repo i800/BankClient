@@ -1,4 +1,5 @@
 #include "Client.h"
+#include "Protocol/Packet.h"
 #include <cassert>
 
 Client::Client():
@@ -31,16 +32,23 @@ void Client::start(const char* host, const unsigned short port)
     }
 }
 
+void Client::sendPacket(const Protocol::Packet& data)
+{
+    assert(!_isPending);
+    _connection->write(data.dump());
+    _connection->flush();
+}
+
 void Client::ping()
 {
     assert(!_isPending);
     _connection->write("Ping, Andrew!!! P.S. I know this is not a packet.");
+    _connection->flush();
 }
 
 void Client::readResponse()
 {
     QByteArray arr = _connection->readAll();
-    qDebug(arr);
 }
 
 void Client::displayError()

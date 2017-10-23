@@ -17,6 +17,7 @@ Packet* Packet::getPacket(char id)
     {
         init();
     }
+	
     for(std::unordered_map<char, Packet*>::iterator iterator = _packetsMap.begin();
         iterator != _packetsMap.end();
         ++iterator)
@@ -26,6 +27,7 @@ Packet* Packet::getPacket(char id)
             return iterator->second->clone();
         }
     }
+	
     return NULL;
 }
 
@@ -37,7 +39,7 @@ bool Packet::isPacket(const QByteArray& byteArray)
     }
     else
     {
-        return getPacketSize(byteArray) == (byteArray.length()-sizeof(char)-sizeof(short));
+        return getPacketSize(byteArray) == (byteArray.length() - sizeof(char) - sizeof(short));
     }
 }
 
@@ -48,7 +50,7 @@ char Packet::getPacketId(const QByteArray& byteArray)
 
 unsigned short Packet::getPacketSize(const QByteArray& byteArray)
 {
-    return *(reinterpret_cast<const unsigned short*>(byteArray.data()+1));
+    return *(reinterpret_cast<const unsigned short*>(byteArray.data() + 1));
 }
 
 // Methods from NVI
@@ -72,8 +74,18 @@ void Packet::load(QByteArray& byteArray)
     buff.read(&i, sizeof(i));
     if(i != getID())
     {
-        //throw some error
+        throw BadPacket("Cannot load an irrelevant packet.");
     }
-    buff.seek(buff.pos()+sizeof(short)); //skip size field
+	
+    buff.seek(buff.pos() + sizeof(short)); //skip size field
     specificLoad(buff);
+}
+
+Packet::BadPacket::BadPacket(const char* info):
+    _info(info)
+{}
+
+void Packet::BadPacket::diagnose() const
+{
+    qInfo(_info);
 }

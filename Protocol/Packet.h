@@ -1,8 +1,8 @@
 #ifndef PACKET_H
 #define PACKET_H
 
-#include<QBuffer>
-#include<unordered_map>
+#include <QBuffer>
+#include <unordered_map>
 
 namespace Protocol
 {
@@ -19,7 +19,8 @@ namespace Protocol
         virtual void specificLoad(QBuffer&) = 0;
         virtual void specificHandle() const = 0;
     public:
-        virtual ~Packet(){}
+        class BadPacket;
+        virtual ~Packet() {}
         static Packet* getPacket(char id);
         static bool isPacket(const QByteArray&);
         static char getPacketId(const QByteArray&);
@@ -43,6 +44,25 @@ namespace Protocol
             return specificHandle();
         }
     };
+
+    class Packet::BadPacket
+    {
+    private:
+        const char* _info;
+        BadPacket(const BadPacket&) = delete;
+        BadPacket& operator=(const BadPacket&) = delete;
+
+        inline const char* info() const
+        {
+            return _info;
+        }
+
+    public:
+        BadPacket(const char* = "Invalid packet.");
+        ~BadPacket() {}
+        void diagnose() const;
+    };
+
 }
 
 #endif // PACKET_H

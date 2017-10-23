@@ -36,6 +36,9 @@ void ConsoleApp::start()
         case 1:
             showInfo();
             break;
+        case 2:
+            sendAuthPacket();
+            break;
         default:
             break;
         }

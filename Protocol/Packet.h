@@ -49,8 +49,6 @@ namespace Protocol
     {
     private:
         const char* _info;
-        BadPacket(const BadPacket&) = delete;
-        BadPacket& operator=(const BadPacket&) = delete;
 
         inline const char* info() const
         {

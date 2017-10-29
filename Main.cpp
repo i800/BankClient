@@ -1,9 +1,9 @@
-#include <QCoreApplication>
-#include "Debug/ConsoleApp.h"
+#include "App.h"
+#include <QApplication>
 
-int main()
+int main(int argc, char *argv[])
 {
-    ConsoleApp app;
-    app.start();
-    return 0;
+    QApplication system(argc, argv);
+    App app;
+    return system.exec();
 }

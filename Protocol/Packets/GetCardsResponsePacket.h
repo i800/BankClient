@@ -17,6 +17,7 @@ private:
     virtual void specificLoad(QBuffer&);
 public:
     GetCardsResponsePacket();
+    GetCardsResponsePacket(const quint8, const QMap<quint64, quint8>&);
     ~GetCardsResponsePacket();
 
     // Selectors-modifiers.

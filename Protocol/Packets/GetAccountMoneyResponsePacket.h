@@ -7,6 +7,7 @@ class GetAccountMoneyResponsePacket : public Packet
 {
 public:
     GetAccountMoneyResponsePacket();
+    GetAccountMoneyResponsePacket(const quint64 accountId, const quint64 amount);
     ~GetAccountMoneyResponsePacket();
 private:
     // Fields.

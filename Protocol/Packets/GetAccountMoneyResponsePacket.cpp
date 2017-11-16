@@ -1,6 +1,14 @@
 #include "GetAccountMoneyResponsePacket.h"
 
-GetAccountMoneyResponsePacket::GetAccountMoneyResponsePacket()
+GetAccountMoneyResponsePacket::GetAccountMoneyResponsePacket():
+    _accountId(0),
+    _amount(0)
+{}
+
+GetAccountMoneyResponsePacket::GetAccountMoneyResponsePacket
+    (const quint64 accountId, const quint64 amount):
+    _accountId(accountId),
+    _amount(amount)
 {}
 
 GetAccountMoneyResponsePacket::~GetAccountMoneyResponsePacket()

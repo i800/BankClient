@@ -17,6 +17,7 @@ private:
     virtual PacketHolder specificHandle() const;
 public:
     GetAccountMoneyPacket();
+    GetAccountMoneyPacket(const quint64 token, const quint64 accountId);
     ~GetAccountMoneyPacket();
 
     // Selector-modifiers.

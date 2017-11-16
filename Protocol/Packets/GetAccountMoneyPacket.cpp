@@ -1,6 +1,14 @@
 #include "GetAccountMoneyPacket.h"
 
-GetAccountMoneyPacket::GetAccountMoneyPacket()
+GetAccountMoneyPacket::GetAccountMoneyPacket():
+    _token(0),
+    _accountId(0)
+{}
+
+GetAccountMoneyPacket::GetAccountMoneyPacket
+    (const quint64 token, const quint64 accountId):
+    _token(token),
+    _accountId(accountId)
 {}
 
 GetAccountMoneyPacket::~GetAccountMoneyPacket()

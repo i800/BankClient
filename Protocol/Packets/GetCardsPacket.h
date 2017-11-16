@@ -17,6 +17,7 @@ private:
     virtual PacketHolder specificHandle() const;
 public:
     GetCardsPacket();
+    GetCardsPacket(const quint64 token, const quint64 userId);
     ~GetCardsPacket();
 
     // Selector-modifiers.

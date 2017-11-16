@@ -1,6 +1,13 @@
 #include "GetCardsPacket.h"
 
-GetCardsPacket::GetCardsPacket()
+GetCardsPacket::GetCardsPacket():
+    _token(0),
+    _userId(0)
+{}
+
+GetCardsPacket::GetCardsPacket(const quint64 token, const quint64 userId):
+    _token(token),
+    _userId(userId)
 {}
 
 GetCardsPacket::~GetCardsPacket()

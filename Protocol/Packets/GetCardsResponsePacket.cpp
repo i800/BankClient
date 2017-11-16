@@ -1,7 +1,20 @@
 #include "GetCardsResponsePacket.h"
 
-GetCardsResponsePacket::GetCardsResponsePacket()
+GetCardsResponsePacket::GetCardsResponsePacket():
+    _amount(0)
 {}
+
+GetCardsResponsePacket::GetCardsResponsePacket
+    (const quint8 amount, const QMap<quint64, quint8>& cards):
+    _amount(amount)
+{
+    QMapIterator<quint64, quint8> iter(cards);
+    while (iter.hasNext())
+    {
+        iter.next();
+        _cards.insert(iter.key(), iter.value());
+    }
+}
 
 GetCardsResponsePacket::~GetCardsResponsePacket()
 {}

@@ -34,6 +34,6 @@ PacketHolder GetAccountMoneyPacket::specificHandle() const
 {
     // TODO implement this method.
     // Must return -2 Packet.
-    qDebug("MakePaymentPacket is not implemented yet!");
+    qDebug("GetAccountMoneyPacket is not implemented yet!");
     return PacketHolder(NULL);
 }

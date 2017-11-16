@@ -1,14 +1,14 @@
-#ifndef GETACCOUNTSMONEY_H
-#define GETACCOUNTSMONEY_H
+#ifndef GETCARDSPACKET_H
+#define GETCARDSPACKET_H
 
 #include "../Packet.h"
 
-class GetAccountMoneyPacket : public Packet
+class GetCardsPacket : public Packet
 {
 private:
     // Fields.
     quint64 _token;
-    quint64 _accountId;
+    quint64 _userId;
     // MC.
     virtual char specificGetID() const;
     virtual PacketHolder specificClone() const;
@@ -16,8 +16,8 @@ private:
     virtual void specificLoad(QBuffer&);
     virtual PacketHolder specificHandle() const;
 public:
-    GetAccountMoneyPacket();
-    ~GetAccountMoneyPacket();
+    GetCardsPacket();
+    ~GetCardsPacket();
 
     // Selector-modifiers.
     quint64& token()
@@ -25,9 +25,9 @@ public:
         return _token;
     }
 
-    quint64& accountId()
+    quint64& userId()
     {
-        return _accountId;
+        return _userId;
     }
 
     // Selectors.
@@ -36,10 +36,10 @@ public:
         return _token;
     }
 
-    quint64 accountId() const
+    quint64 userId() const
     {
-        return _accountId;
+        return _userId;
     }
 };
 
-#endif // GETACCOUNTSMONEY_H
+#endif // GETCARDSPACKET_H

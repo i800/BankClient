@@ -27,20 +27,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     GUI/MainWindow.cpp \
-    Protocol/Client/UserAuthPacket.cpp \
-    Protocol/Packet.cpp \
     Logic/Client.cpp \
     App.cpp \
-    GUI/AuthFrame.cpp
+    GUI/AuthFrame.cpp \
+    Protocol/Packet.cpp \
+    Protocol/Packets/MakePaymentPacket.cpp \
+    Protocol/Packets/MakePaymentResponsePacket.cpp \
+    Protocol/Packets/UserAuthPacket.cpp
 
 HEADERS += \
     GUI/MainWindow.h \
-    Protocol/Client/UserAuthPacket.h \
-    Protocol/Packet.h \
-    Protocol/PacketsList.h \
     Logic/Client.h \
     App.h \
-    GUI/AuthFrame.h
+    GUI/AuthFrame.h \
+    Protocol/Processors/UserAuthProcessor.h \
+    Protocol/Packet.h \
+    Protocol/PacketsList.h \
+    Protocol/Packets/MakePaymentPacket.h \
+    Protocol/Packets/MakePaymentResponsePacket.h \
+    Protocol/Packets/UserAuthPacket.h
 
 FORMS += \
     GUI/MainWindow.ui \

@@ -1,9 +1,9 @@
 #include "Client.h"
 #include "../Protocol/Packet.h"
-#include "../Protocol/Client/UserAuthPacket.h"
+#include "../Protocol/Packets/UserAuthPacket.h"
+#include "../Protocol/Packets/MakePaymentPacket.h"
+#include "../Protocol/Packets/MakePaymentResponsePacket.h"
 #include <cassert>
-
-using namespace Protocol;
 
 Client::Client():
     _isPending(true),

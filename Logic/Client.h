@@ -7,6 +7,7 @@ class Client : public QObject
     Q_OBJECT
 private:
     bool _isPending;
+    QString _session;
     QTcpSocket* _connection;
     Client(const Client&) = delete;
     Client& operator=(const Client&) = delete;
@@ -21,7 +22,7 @@ private slots:
      * Each request from the client
      * has a prefix 'request'.
      */
-    void requestForAuth(long long, short);
+    void requestForAuth(long long, QString);
     // Other requests (...)
 
     /**

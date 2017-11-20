@@ -7,8 +7,8 @@ App::App(QObject *parent):
     _client.start();
     _authFrame.show();
 
-    connect(&_authFrame, SIGNAL(callForAuth(long long, short)),
-            &_client, SLOT(requestForAuth(long long, short)));
+    connect(&_authFrame, SIGNAL(callForAuth(long long, QString)),
+            &_client, SLOT(requestForAuth(long long, QString)));
 
     connect(&_client, SIGNAL(authFailed()), &_authFrame, SLOT(reactAuthFailed()));
 

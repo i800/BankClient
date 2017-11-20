@@ -9,9 +9,9 @@ class UserAuthPacket : public Packet
 private:
     static const char _ID;
     long long _cardNumber;
-    short _password;
+    QString _password;
 
-    //interface methods
+    // Interface methods.
     char specificGetID() const;
     PacketHolder specificClone() const;
     QByteArray specificDump() const;
@@ -19,15 +19,14 @@ private:
     PacketHolder specificHandle() const;
 public:
     UserAuthPacket();
-    UserAuthPacket(long long card, short pass);
+    UserAuthPacket(long long card, QString pass);
     UserAuthPacket(const UserAuthPacket&);
-    //selectors-modifiers
+    // Selectors-modifiers.
     long long& card();
-    short& password();
-    //selectors
+    QString& password();
+    // Selectors.
     long long card() const;
-    short password() const;
+    const QString& password() const;
 };
-
 
 #endif // UserAuthPacket_H

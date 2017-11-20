@@ -37,7 +37,7 @@ signals:
      * Each user request called from interface
      * has a prefix 'call'.
      */
-    void callForAuth(long long, short);
+    void callForAuth(long long, QString);
 };
 
 #endif // AUTHFRAME_H

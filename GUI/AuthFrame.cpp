@@ -26,12 +26,10 @@ void AuthFrame::requestForAuth()
     QString cardnum = ui->in_cardNum->text();
     QString pass = ui->in_password->text();
     bool cardnumOk(false);
-    bool passOk(false);
     long long cardnumConv = cardnum.toLongLong(&cardnumOk);
-    short passConv = pass.toShort(&passOk);
-    if (cardnumOk && cardnum.length() == 19 && passOk && pass.length() == 4)
+    if (cardnumOk) // && cardnum.length() == 19 && pass.length() > 7)
     {
-        emit callForAuth(cardnumConv, passConv);
+        emit callForAuth(cardnumConv, pass);
         setWaitingMode(true);
     }
     else

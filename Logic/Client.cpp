@@ -1,8 +1,16 @@
 #include "Client.h"
 #include "../Protocol/Packet.h"
-#include "../Protocol/Packets/UserAuthPacket.h"
+#include "../Protocol/Packets/ErrorPacket.h"
+#include "../Protocol/Packets/GetAccountMoneyPacket.h"
+#include "../Protocol/Packets/GetAccountMoneyResponsePacket.h"
+#include "../Protocol/Packets/GetCardsPacket.h"
+#include "../Protocol/Packets/GetCardsResponsePacket.h"
+#include "../Protocol/Packets/GetPaymentsPacket.h"
+#include "../Protocol/Packets/GetPaymentsResponsePacket.h"
 #include "../Protocol/Packets/MakePaymentPacket.h"
 #include "../Protocol/Packets/MakePaymentResponsePacket.h"
+#include "../Protocol/Packets/UserAuthPacket.h"
+#include "../Protocol/Packets/UserAuthResponsePacket.h"
 #include <cassert>
 
 Client::Client():
@@ -38,7 +46,7 @@ void Client::start(const char* host, const unsigned short port)
     }
 }
 
-void Client::requestForAuth(long long cardnum, short pass)
+void Client::requestForAuth(long long cardnum, QString pass)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
 
@@ -51,19 +59,17 @@ void Client::reactAuthResponse()
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
 
     QByteArray arr = _connection->readAll();
-#if 0
-    if (!Packet::isPacket(arr) || Packet::getPacketId(arr) != 1)
+    if (!Packet::isPacket(arr) || Packet::getPacketId(arr) != -1)
     {
         emit authFailed();
     }
     else
     {
+        UserAuthResponsePacket response;
+        response.load(arr);
+        _session = response.token();
         emit authPassed();
     }
-#endif
-#if 1
-    emit authPassed();
-#endif
 }
 
 void Client::reactOnDisruption()

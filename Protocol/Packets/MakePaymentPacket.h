@@ -3,7 +3,7 @@
 
 #include "../Packet.h"
 
-class  MakePaymentPacket : public Packet
+class MakePaymentPacket : public Packet
 {
 private:
     //fields

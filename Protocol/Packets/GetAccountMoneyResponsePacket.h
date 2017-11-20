@@ -18,6 +18,11 @@ public:
     GetAccountMoneyResponsePacket();
     GetAccountMoneyResponsePacket(const quint64 accountId, const quint64 amount);
     ~GetAccountMoneyResponsePacket();
+
+    quint64 amount()
+    {
+        return _amount;
+    }
 };
 
 #endif // GETACCOUNTMONEYRESPONSEPACKET_H

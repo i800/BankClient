@@ -14,6 +14,8 @@ App::App(QObject *parent):
 
     connect(&_client, SIGNAL(authPassed()), this, SLOT(reactAuthPassed()));
 
+    connect(&_client, SIGNAL(error(QString)), &_mainWindow, SLOT(reactError(QString)));
+
 #ifndef NDEBUG
     qDebug("App created.");
 #endif

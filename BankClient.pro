@@ -39,7 +39,9 @@ SOURCES += \
     Protocol/Packets/GetCardsPacket.cpp \
     Protocol/Packets/GetCardsResponsePacket.cpp \
     Protocol/Packets/ErrorPacket.cpp \
-    Protocol/Packets/UserAuthResponsePacket.cpp
+    Protocol/Packets/UserAuthResponsePacket.cpp \
+    Protocol/Packets/GetPaymentsPacket.cpp \
+    Protocol/Packets/GetPaymentsResponsePacket.cpp
 
 HEADERS += \
     GUI/MainWindow.h \
@@ -57,7 +59,9 @@ HEADERS += \
     Protocol/Packets/GetCardsPacket.h \
     Protocol/Packets/GetCardsResponsePacket.h \
     Protocol/Packets/ErrorPacket.h \
-    Protocol/Packets/UserAuthResponsePacket.h
+    Protocol/Packets/UserAuthResponsePacket.h \
+    Protocol/Packets/GetPaymentsPacket.h \
+    Protocol/Packets/GetPaymentsResponsePacket.h
 
 FORMS += \
     GUI/MainWindow.ui \

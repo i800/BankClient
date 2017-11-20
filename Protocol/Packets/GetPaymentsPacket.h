@@ -17,6 +17,7 @@ private:
     virtual PacketHolder specificHandle() const;
 public:
     GetPaymentsPacket();
+    GetPaymentsPacket(const quint64 token, const quint64 cardNumber);
     ~GetPaymentsPacket();
     //selector-modifiers
     quint64& token()

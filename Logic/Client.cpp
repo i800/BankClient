@@ -46,6 +46,11 @@ void Client::start(const char* host, const unsigned short port)
     }
 }
 
+bool Client::processError(const QByteArray& arr)
+{
+    return !Packet::isPacket(arr) || Packet::getPacketId(arr) == 0;
+}
+
 void Client::requestForAuth(long long cardnum, QString pass)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
@@ -54,21 +59,96 @@ void Client::requestForAuth(long long cardnum, QString pass)
     _connection->flush();
 }
 
+void Client::requestForAccMoney(quint64 token, quint64 accountId)
+{
+    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAccMoneyResponse()));
+
+    _connection->write(GetAccountMoneyPacket(token, accountId).dump());
+    _connection->flush();
+}
+
+void Client::requestForCards(quint64 token, quint64 userId)
+{
+    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
+
+    _connection->write(GetCardsPacket(token, userId).dump());
+    _connection->flush();
+}
+
+void Client::requestForPayments(quint64 token, quint64 cardNumber)
+{
+    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
+
+    _connection->write(GetPaymentsPacket(token, cardNumber).dump());
+    _connection->flush();
+}
+
 void Client::reactAuthResponse()
 {
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
 
     QByteArray arr = _connection->readAll();
-    if (!Packet::isPacket(arr) || Packet::getPacketId(arr) != -1)
-    {
-        emit authFailed();
-    }
-    else
+    if (!processError(arr))
     {
         UserAuthResponsePacket response;
         response.load(arr);
         _session = response.token();
         emit authPassed();
+    }
+    else
+    {
+        emit error("Login failed. Check your input or try later.");
+    }
+}
+
+void Client::reactAccMoneyResponse()
+{
+    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactAccMoneyResponse()));
+
+    QByteArray arr = _connection->readAll();
+    if (!processError(arr))
+    {
+        GetAccountMoneyResponsePacket response;
+        response.load(arr);
+        emit gotAccountMoney(response.amount());
+    }
+    else
+    {
+        emit error("Cannot get account money, please, retry do this action later.");
+    }
+}
+
+void Client::reactCardsResponse()
+{
+    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
+
+    QByteArray arr = _connection->readAll();
+    if (!processError(arr))
+    {
+        GetCardsResponsePacket response;
+        response.load(arr);
+        emit gotAccountCards(response.cards());
+    }
+    else
+    {
+        emit error("Cannot get account cards, please, retry do this action later.");
+    }
+}
+
+void Client::reactPaymentsResponse()
+{
+    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPaymentsResponse()));
+
+    QByteArray arr = _connection->readAll();
+    if (!processError(arr))
+    {
+        GetPaymentsResponsePacket response;
+        response.load(arr);
+        emit gotPayments(QByteArray()); // TODO response.getPayments()
+    }
+    else
+    {
+        emit error("Cannot get account cards, please, retry do this action later.");
     }
 }
 

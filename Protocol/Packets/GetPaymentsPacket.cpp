@@ -3,6 +3,11 @@
 GetPaymentsPacket::GetPaymentsPacket()
 {}
 
+GetPaymentsPacket::GetPaymentsPacket(const quint64 token, const quint64 cardNumber):
+    _token(token),
+    _cardNumber(cardNumber)
+{}
+
 GetPaymentsPacket::~GetPaymentsPacket()
 {}
 

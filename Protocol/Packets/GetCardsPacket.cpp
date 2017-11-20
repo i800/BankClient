@@ -36,11 +36,3 @@ void GetCardsPacket::specificLoad(QBuffer& data)
     data.read((char*)&_token, sizeof(_token));
     data.read((char*)&_userId, sizeof(_userId));
 }
-
-PacketHolder GetCardsPacket::specificHandle() const
-{
-    // TODO implement this method.
-    // Must return -3 Packet.
-    qDebug("GetCardsPacket is not implemented yet!");
-    return PacketHolder(NULL);
-}

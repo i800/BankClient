@@ -63,8 +63,3 @@ void UserAuthPacket::specificLoad(QBuffer& buff)
     _password = QString(pass);
     delete pass;
 }
-
-PacketHolder UserAuthPacket::specificHandle() const
-{
-    return PacketHolder(clone());
-}

@@ -34,10 +34,3 @@ void GetPaymentsPacket::specificLoad(QBuffer& data)
     data.read((char*)&_token, sizeof(_token));
     data.read((char*)&_cardNumber, sizeof(_cardNumber));
 }
-
-PacketHolder GetPaymentsPacket::specificHandle() const
-{
-    //TODO implement it!
-    qWarning("GetPaymentsPacket handling not implemented yet!");
-    return PacketHolder(NULL);
-}

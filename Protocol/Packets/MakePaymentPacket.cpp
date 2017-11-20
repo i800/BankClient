@@ -35,11 +35,3 @@ void MakePaymentPacket::specificLoad(QBuffer& data)
     data.read((char*)&_amount, sizeof(_amount));
     _comment = QString(data.readAll());
 }
-
-PacketHolder MakePaymentPacket::specificHandle() const
-{
-    //TODO implement this method
-    //  Must return -4 Packet
-    qDebug("MakePaymentPacket doesnt implemented yet!");
-    return PacketHolder(NULL);
-}

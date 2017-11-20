@@ -16,10 +16,25 @@ private:
     virtual void specificLoad(QBuffer&);
 public:
     GetAccountMoneyResponsePacket();
-    GetAccountMoneyResponsePacket(const quint64 accountId, const quint64 amount);
+    GetAccountMoneyResponsePacket(quint64 accountId, quint64 amount);
     ~GetAccountMoneyResponsePacket();
 
-    quint64 amount()
+    quint64& accountId()
+    {
+        return _accountId;
+    }
+
+    quint64& amount()
+    {
+        return _amount;
+    }
+
+    quint64 accountId() const
+    {
+        return _accountId;
+    }
+
+    quint64 amount() const
     {
         return _amount;
     }

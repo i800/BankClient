@@ -60,35 +60,36 @@ bool Client::processError(const QByteArray& arr)
     return !Packet::isPacket(arr) || Packet::getPacketId(arr) == 0;
 }
 
-void Client::requestForAuth(long long cardnum, QString pass)
+void Client::requestForAuth(quint64 cardNumber, QString pass)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
 
-    _connection->write(UserAuthPacket(cardnum, pass).dump());
+    _cardNumber = cardNumber;
+    _connection->write(UserAuthPacket(cardNumber, pass).dump());
     _connection->flush();
 }
 
-void Client::requestForAccMoney(quint64 token, quint64 accountId)
+void Client::requestForAccMoney()
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAccMoneyResponse()));
 
-    _connection->write(GetAccountMoneyPacket(token, accountId).dump());
+    _connection->write(GetAccountMoneyPacket(_session, _cardNumber).dump());
     _connection->flush();
 }
 
-void Client::requestForCards(quint64 token, quint64 userId)
+void Client::requestForCards()
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
-
-    _connection->write(GetCardsPacket(token, userId).dump());
+    // _cardNumber is not userId.
+    _connection->write(GetCardsPacket(_session, _cardNumber).dump());
     _connection->flush();
 }
 
-void Client::requestForPayments(quint64 token, quint64 cardNumber)
+void Client::requestForPayments()
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
 
-    _connection->write(GetPaymentsPacket(token, cardNumber).dump());
+    _connection->write(GetPaymentsPacket(_session, _cardNumber).dump());
     _connection->flush();
 }
 

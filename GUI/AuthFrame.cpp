@@ -26,7 +26,7 @@ void AuthFrame::requestForAuth()
     QString cardnum = ui->in_cardNum->text();
     QString pass = ui->in_password->text();
     bool cardnumOk(false);
-    long long cardnumConv = cardnum.toLongLong(&cardnumOk);
+    quint64 cardnumConv = cardnum.toULongLong(&cardnumOk);
     if (cardnumOk) // && cardnum.length() == 19 && pass.length() > 7)
     {
         emit callForAuth(cardnumConv, pass);

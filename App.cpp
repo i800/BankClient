@@ -11,6 +11,15 @@ App::App(QObject *parent):
     connect(&_authFrame, SIGNAL(callForAuth(long long, QString)),
             &_client, SLOT(requestForAuth(long long, QString)));
 
+    connect(&_mainWindow, SIGNAL(callForAccMoney()),
+            &_client, SLOT(requestForAccMoney()));
+
+    connect(&_mainWindow, SIGNAL(callForAccCardsAmount()),
+            &_client, SLOT(requestForCards()));
+
+    connect(&_mainWindow, SIGNAL(callForPaymentsAmount()),
+            &_client, SLOT(requestForPayments()));
+
     connect(&_client, SIGNAL(disruption()), this, SLOT(reactDisruption()));
 
     connect(&_client, SIGNAL(authFailed()), &_authFrame, SLOT(reactAuthFailed()));

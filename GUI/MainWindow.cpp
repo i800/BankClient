@@ -14,9 +14,30 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::freezeMode(const bool mode)
+void MainWindow::setWaitingMode(const bool mode)
 {
-    // TODO: freeze mode.
+    ui->getAccMoneyButton->setDisabled(mode);
+    ui->getCardsAmountButton->setDisabled(mode);
+    ui->getPaymentsAmountsButton->setDisabled(mode);
+    ui->makeTransactionButton->setDisabled(mode);
+}
+
+void MainWindow::requestForAccMoney()
+{
+    setWaitingMode(true);
+    emit callForAccMoney();
+}
+
+void MainWindow::requestForCards()
+{
+    setWaitingMode(true);
+    emit callForAccCardsAmount();
+}
+
+void MainWindow::requestForPayments()
+{
+    setWaitingMode(true);
+    emit callForPaymentsAmount();
 }
 
 void MainWindow::reactGotAccMoney(quint64 money)
@@ -24,6 +45,7 @@ void MainWindow::reactGotAccMoney(quint64 money)
     QString str("Your money: ");
     QMessageBox::information(this, "Information",
                    str.append(QString::number(money)));
+    setWaitingMode(false);
 }
 
 void MainWindow::reactGotAccCardsAmount(unsigned cardsAmount)
@@ -32,6 +54,7 @@ void MainWindow::reactGotAccCardsAmount(unsigned cardsAmount)
     QString str("Your number of cards: ");
     QMessageBox::information(this, "Information",
                              str.append(QString::number(cardsAmount)));
+    setWaitingMode(false);
 }
 
 void MainWindow::reactGotPaymentsAmount(unsigned amount)
@@ -40,10 +63,11 @@ void MainWindow::reactGotPaymentsAmount(unsigned amount)
         QString str("Your number of payments: ");
     QMessageBox::information(this, "Information",
                              str.append(QString::number(amount)));
+    setWaitingMode(false);
 }
 
 void MainWindow::reactError(QString info)
 {
     QMessageBox::information(this, "Error", info);
-    freezeMode(false);
+    setWaitingMode(false);
 }

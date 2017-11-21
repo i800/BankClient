@@ -14,8 +14,16 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void freezeMode(const bool);
+    void setWaitingMode(const bool);
 public slots:
+    /**
+     * Requests to the client.
+     * Each request to the client
+     * has a prefix 'request'.
+     */
+    void requestForAccMoney();
+    void requestForCards();
+    void requestForPayments();
     /**
       * Reactions.
       * Each reaction has a prefix 'react'.
@@ -28,6 +36,9 @@ private:
     Ui::MainWindow *ui;
 
 signals:
+    void callForAccMoney();
+    void callForAccCardsAmount();
+    void callForPaymentsAmount();
 };
 
 #endif // MAINWINDOW_H

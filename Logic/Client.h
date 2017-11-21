@@ -7,7 +7,8 @@ class Client : public QObject
     Q_OBJECT
 private:
     bool _isPending;
-    QString _session;
+    quint64 _session;
+    quint64 _cardNumber;
     QTcpSocket* _connection;
     Client(const Client&) = delete;
     Client& operator=(const Client&) = delete;
@@ -23,10 +24,10 @@ private slots:
      * Each request from the client
      * has a prefix 'request'.
      */
-    void requestForAuth(long long, QString);
-    void requestForAccMoney(quint64, quint64);
-    void requestForCards(quint64, quint64);
-    void requestForPayments(quint64, quint64);
+    void requestForAuth(quint64 cardNumber, QString pass);
+    void requestForAccMoney();
+    void requestForCards();
+    void requestForPayments();
     // Other requests (...)
 
     /**

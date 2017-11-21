@@ -92,9 +92,62 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>getAccMoneyButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>requestForAccMoney()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>113</x>
+     <y>122</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>getCardsAmountButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>requestForCards()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>319</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>357</x>
+     <y>56</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>getPaymentsAmountsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>requestForPayments()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>124</x>
+     <y>277</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>176</x>
+     <y>204</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <signal>buttonCh()</signal>
+  <signal>callForAccMoney()</signal>
   <slot>testStuff()</slot>
+  <slot>requestForAccMoney()</slot>
+  <slot>requestForCards()</slot>
+  <slot>requestForPayments()</slot>
  </slots>
 </ui>

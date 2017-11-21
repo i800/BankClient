@@ -5,7 +5,7 @@
 App::App(QObject *parent):
     QObject(parent)
 {
-    _client.start();
+    _client.start();//"platinium.ddns.net");
     _authFrame.show();
 
     connect(&_authFrame, SIGNAL(callForAuth(long long, QString)),

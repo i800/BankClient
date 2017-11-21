@@ -41,6 +41,7 @@ private slots:
     void reactOnDisruption();
 
     void abortAll();
+    void closeAll();
 signals:
     void disruption();
     void authPassed();

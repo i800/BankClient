@@ -8,8 +8,8 @@ App::App(QObject *parent):
     _client.start();//"platinium.ddns.net");
     _authFrame.show();
 
-    connect(&_authFrame, SIGNAL(callForAuth(long long, QString)),
-            &_client, SLOT(requestForAuth(long long, QString)));
+    connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),
+            &_client, SLOT(requestForAuth(quint64, QString)));
 
     connect(&_mainWindow, SIGNAL(callForAccMoney()),
             &_client, SLOT(requestForAccMoney()));

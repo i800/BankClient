@@ -22,6 +22,8 @@ Client::Client():
         QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
         this, &Client::reactOnDisruption);
 
+    connect(_connection, SIGNAL(aboutToClose()), this, SLOT(closeAll()));
+
     connect(_connection, SIGNAL(disconnected()), this, SLOT(abortAll()));
 
 #ifndef NDEBUG
@@ -51,8 +53,12 @@ void Client::start(const char* host, const unsigned short port)
 void Client::abortAll()
 {
     _connection->close();
-    qFatal("bhbhbjbjhb");
     emit error("Connection lost");
+}
+
+void Client::closeAll()
+{
+    exit(0);
 }
 
 bool Client::processError(const QByteArray& arr)

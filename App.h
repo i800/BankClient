@@ -26,6 +26,7 @@ public slots:
      * Each reaction has a prefix 'react'.
      */
     void reactAuthPassed();
+    void reactDisruption();
 };
 
 #endif // APP_H

@@ -1,5 +1,6 @@
 #include "App.h"
 #include "Protocol/Packet.h"
+#include <QMessageBox>
 
 App::App(QObject *parent):
     QObject(parent)
@@ -9,6 +10,8 @@ App::App(QObject *parent):
 
     connect(&_authFrame, SIGNAL(callForAuth(long long, QString)),
             &_client, SLOT(requestForAuth(long long, QString)));
+
+    connect(&_client, SIGNAL(disruption()), SLOT(reactDisruption()));
 
     connect(&_client, SIGNAL(authFailed()), &_authFrame, SLOT(reactAuthFailed()));
 
@@ -25,4 +28,12 @@ void App::reactAuthPassed()
 {
     _authFrame.close();
     _mainWindow.show();
+}
+
+void App::reactDisruption()
+{
+    _authFrame.close();
+    _mainWindow.close();
+    QMessageBox::information(0, "Error", "Sorry, connection with server lost");
+    exit(0);
 }

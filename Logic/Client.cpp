@@ -22,6 +22,8 @@ Client::Client():
         QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
         this, &Client::reactOnDisruption);
 
+    connect(_connection, SIGNAL(disconnected()), this, SLOT(abortAll()));
+
 #ifndef NDEBUG
     qDebug("Client created.");
 #endif
@@ -44,6 +46,13 @@ void Client::start(const char* host, const unsigned short port)
     {
         _isPending = false;
     }
+}
+
+void Client::abortAll()
+{
+    _connection->close();
+    qFatal("bhbhbjbjhb");
+    emit error("Connection lost");
 }
 
 bool Client::processError(const QByteArray& arr)

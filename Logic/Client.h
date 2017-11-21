@@ -38,6 +38,8 @@ private slots:
     void reactCardsResponse();
     void reactPaymentsResponse();
     void reactOnDisruption();
+
+    void abortAll();
 signals:
     void disruption();
     void authPassed();

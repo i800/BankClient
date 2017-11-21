@@ -21,8 +21,8 @@ public slots:
       * Each reaction has a prefix 'react'.
       */
     void reactGotAccMoney(quint64);
-    void reactGotAccCards(unsigned);
-    // void reactGotPayments()
+    void reactGotAccCardsAmount(uint);
+    void reactGotPaymentsAmount(uint);
     void reactError(QString);
 private:
     Ui::MainWindow *ui;

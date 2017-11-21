@@ -22,10 +22,13 @@ App::App(QObject *parent):
 
     connect(&_client, SIGNAL(gotAccountMoney(quint64)),
             &_mainWindow, SLOT(reactGotAccMoney(quint64)));
-#if 0
-    connect(&_client, SIGNAL(gotAccountCards(QMap<quint64,quint8>)),
-            &_mainWindow, SLOT(reactGotAccCards(QMap<quint64,quint8>)));
-#endif
+
+    connect(&_client, SIGNAL(gotAccountCardsAmount(uint)),
+            &_mainWindow, SLOT(reactGotAccCardsAmount(uint)));
+
+    connect(&_client, SIGNAL(gotPaymentsAmount(uint)),
+            &_mainWindow, SLOT(reactGotPaymentsAmount(uint)));
+
 #ifndef NDEBUG
     qDebug("App created.");
 #endif

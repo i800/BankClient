@@ -45,8 +45,8 @@ signals:
     void authPassed();
     void authFailed();
     void gotAccountMoney(quint64);
-    void gotAccountCards(QMap<quint64, quint8>);
-    void gotPayments(QByteArray);
+    void gotAccountCardsAmount(uint);
+    void gotPaymentsAmount(uint);
     void error(QString);
 };
 

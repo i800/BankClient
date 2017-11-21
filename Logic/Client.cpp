@@ -136,7 +136,7 @@ void Client::reactCardsResponse()
     {
         GetCardsResponsePacket response;
         response.load(arr);
-        emit gotAccountCards(response.cards());
+        emit gotAccountCardsAmount(response.cards().size());
     }
     else
     {
@@ -153,7 +153,7 @@ void Client::reactPaymentsResponse()
     {
         GetPaymentsResponsePacket response;
         response.load(arr);
-        emit gotPayments(QByteArray()); // TODO response.getPayments()
+        emit gotPaymentsAmount(response.paymentsAmount()); // TODO response.getPayments()
     }
     else
     {

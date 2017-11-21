@@ -26,11 +26,20 @@ void MainWindow::reactGotAccMoney(quint64 money)
                    str.append(QString::number(money)));
 }
 
-void MainWindow::reactGotAccCards(unsigned cardsAmount)
+void MainWindow::reactGotAccCardsAmount(unsigned cardsAmount)
 {
     // TODO: Show all cards info.
+    QString str("Your number of cards: ");
     QMessageBox::information(this, "Information",
-                             QString::number(cardsAmount));
+                             str.append(QString::number(cardsAmount)));
+}
+
+void MainWindow::reactGotPaymentsAmount(unsigned amount)
+{
+    // TODO: Show all cards info.
+        QString str("Your number of payments: ");
+    QMessageBox::information(this, "Information",
+                             str.append(QString::number(amount)));
 }
 
 void MainWindow::reactError(QString info)

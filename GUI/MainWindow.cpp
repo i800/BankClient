@@ -16,7 +16,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::freezeMode(const bool mode)
 {
-    // FREEZE IT, DANICH!!!
+    // TODO: freeze mode.
+}
+
+void MainWindow::reactGotAccMoney(quint64 money)
+{
+    QString str("Your money: ");
+    QMessageBox::information(this, "Information",
+                   str.append(QString::number(money)));
+}
+
+void MainWindow::reactGotAccCards(unsigned cardsAmount)
+{
+    // TODO: Show all cards info.
+    QMessageBox::information(this, "Information",
+                             QString::number(cardsAmount));
 }
 
 void MainWindow::reactError(QString info)

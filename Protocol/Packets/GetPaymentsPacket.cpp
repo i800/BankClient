@@ -3,6 +3,11 @@
 GetPaymentsPacket::GetPaymentsPacket()
 {}
 
+GetPaymentsPacket::GetPaymentsPacket(const quint64 token, const quint64 cardNumber):
+    _token(token),
+    _cardNumber(cardNumber)
+{}
+
 GetPaymentsPacket::~GetPaymentsPacket()
 {}
 
@@ -28,11 +33,4 @@ void GetPaymentsPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
     data.read((char*)&_cardNumber, sizeof(_cardNumber));
-}
-
-PacketHolder GetPaymentsPacket::specificHandle() const
-{
-    //TODO implement it!
-    qWarning("GetPaymentsPacket handling not implemented yet!");
-    return PacketHolder(NULL);
 }

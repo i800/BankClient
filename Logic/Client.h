@@ -11,6 +11,7 @@ private:
     QTcpSocket* _connection;
     Client(const Client&) = delete;
     Client& operator=(const Client&) = delete;
+    bool processError(const QByteArray&);
 public:
     explicit Client();
     ~Client();
@@ -23,6 +24,9 @@ private slots:
      * has a prefix 'request'.
      */
     void requestForAuth(long long, QString);
+    void requestForAccMoney(quint64, quint64);
+    void requestForCards(quint64, quint64);
+    void requestForPayments(quint64, quint64);
     // Other requests (...)
 
     /**
@@ -30,12 +34,20 @@ private slots:
      * Each reaction has a prefix 'react'.
      */
     void reactAuthResponse();
+    void reactAccMoneyResponse();
+    void reactCardsResponse();
+    void reactPaymentsResponse();
     void reactOnDisruption();
-    // Other reactions (...)
+
+    void abortAll();
 signals:
     void disruption();
     void authPassed();
     void authFailed();
+    void gotAccountMoney(quint64);
+    void gotAccountCards(QMap<quint64, quint8>);
+    void gotPayments(QByteArray);
+    void error(QString);
 };
 
 #endif // CLIENT_H

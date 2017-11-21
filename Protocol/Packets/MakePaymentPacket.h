@@ -3,7 +3,7 @@
 
 #include "../Packet.h"
 
-class  MakePaymentPacket : public Packet
+class MakePaymentPacket : public Packet
 {
 private:
     //fields
@@ -17,7 +17,6 @@ private:
     virtual PacketHolder specificClone() const;
     virtual QByteArray specificDump() const;
     virtual void specificLoad(QBuffer&);
-    virtual PacketHolder specificHandle() const;
 public:
      MakePaymentPacket();
      ~MakePaymentPacket();

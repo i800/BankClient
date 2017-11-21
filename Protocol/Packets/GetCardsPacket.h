@@ -14,7 +14,6 @@ private:
     virtual PacketHolder specificClone() const;
     virtual QByteArray specificDump() const;
     virtual void specificLoad(QBuffer&);
-    virtual PacketHolder specificHandle() const;
 public:
     GetCardsPacket();
     GetCardsPacket(const quint64 token, const quint64 userId);

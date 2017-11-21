@@ -37,11 +37,3 @@ void GetAccountMoneyPacket::specificLoad(QBuffer& data)
     data.read((char*)&_token, sizeof(_token));
     data.read((char*)&_accountId, sizeof(_accountId));
 }
-
-PacketHolder GetAccountMoneyPacket::specificHandle() const
-{
-    // TODO implement this method.
-    // Must return -2 Packet.
-    qDebug("GetAccountMoneyPacket is not implemented yet!");
-    return PacketHolder(NULL);
-}

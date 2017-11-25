@@ -25,6 +25,7 @@ public slots:
      * has a prefix 'request'.
      */
     void requestForAuth();
+    void requestForQuit();
 
     /**
       * Reactions.

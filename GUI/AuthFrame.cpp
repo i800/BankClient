@@ -7,6 +7,8 @@ AuthFrame::AuthFrame(QWidget *parent):
     ui(new Ui::AuthFrame)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::FramelessWindowHint
+                       | Qt::WindowStaysOnBottomHint);
 }
 
 AuthFrame::~AuthFrame()
@@ -19,6 +21,7 @@ void AuthFrame::setWaitingMode(const bool value)
     ui->in_cardNum->setDisabled(value);
     ui->in_password->setDisabled(value);
     ui->pushButton->setDisabled(value);
+    ui->quitButton->setDisabled(value);
 }
 
 void AuthFrame::requestForAuth()
@@ -36,6 +39,11 @@ void AuthFrame::requestForAuth()
     {
         QMessageBox::information(this, "Ooops..", "Invalid input. Please, check it.");
     }
+}
+
+void AuthFrame::requestForQuit()
+{
+    exit(0);
 }
 
 void AuthFrame::reactAuthFailed()

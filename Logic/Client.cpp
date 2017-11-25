@@ -113,7 +113,7 @@ void Client::reactAuthResponse()
     }
     else
     {
-        emit error("Login failed. Check your input or try later.");
+        emit authFailed();
     }
 }
 

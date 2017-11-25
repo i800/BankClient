@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>534</width>
+    <width>611</width>
     <height>230</height>
    </rect>
   </property>
@@ -34,9 +34,9 @@
      <colorrole role="Text">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>55</red>
+        <green>55</green>
+        <blue>55</blue>
        </color>
       </brush>
      </colorrole>
@@ -64,6 +64,15 @@
         <red>42</red>
         <green>47</green>
         <blue>51</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>228</red>
+        <green>236</green>
+        <blue>242</blue>
        </color>
       </brush>
      </colorrole>
@@ -90,9 +99,9 @@
      <colorrole role="Text">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>55</red>
+        <green>55</green>
+        <blue>55</blue>
        </color>
       </brush>
      </colorrole>
@@ -120,6 +129,15 @@
         <red>42</red>
         <green>47</green>
         <blue>51</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ToolTipText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>228</red>
+        <green>236</green>
+        <blue>242</blue>
        </color>
       </brush>
      </colorrole>
@@ -179,6 +197,15 @@
        </color>
       </brush>
      </colorrole>
+     <colorrole role="ToolTipText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>228</red>
+        <green>236</green>
+        <blue>242</blue>
+       </color>
+      </brush>
+     </colorrole>
     </disabled>
    </palette>
   </property>
@@ -194,7 +221,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>240</x>
      <y>20</y>
      <width>141</width>
      <height>41</height>
@@ -293,9 +320,9 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>170</x>
      <y>150</y>
-     <width>121</width>
+     <width>140</width>
      <height>41</height>
     </rect>
    </property>
@@ -308,6 +335,60 @@
     <string>Log in</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>80</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Digits (0-9)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>110</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Simple text</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="quitButton">
+   <property name="geometry">
+    <rect>
+     <x>321</x>
+     <y>150</y>
+     <width>140</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
@@ -318,7 +399,7 @@
    <slot>requestForAuth()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>242</x>
+     <x>152</x>
      <y>169</y>
     </hint>
     <hint type="destinationlabel">
@@ -327,8 +408,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>quitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AuthFrame</receiver>
+   <slot>requestForQuit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>375</x>
+     <y>171</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>377</x>
+     <y>198</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>requestForAuth()</slot>
+  <slot>requestForQuit()</slot>
  </slots>
 </ui>

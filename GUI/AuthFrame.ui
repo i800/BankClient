@@ -22,12 +22,21 @@
        </color>
       </brush>
      </colorrole>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
        </color>
       </brush>
      </colorrole>
@@ -43,9 +52,9 @@
      <colorrole role="ButtonText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>42</red>
-        <green>47</green>
-        <blue>51</blue>
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
        </color>
       </brush>
      </colorrole>
@@ -87,12 +96,21 @@
        </color>
       </brush>
      </colorrole>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
+       </color>
+      </brush>
+     </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
        </color>
       </brush>
      </colorrole>
@@ -108,9 +126,9 @@
      <colorrole role="ButtonText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>42</red>
-        <green>47</green>
-        <blue>51</blue>
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
        </color>
       </brush>
      </colorrole>
@@ -146,36 +164,45 @@
      <colorrole role="WindowText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Text">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="ButtonText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>228</red>
-        <green>236</green>
-        <blue>242</blue>
+        <red>81</red>
+        <green>81</green>
+        <blue>81</blue>
        </color>
       </brush>
      </colorrole>
@@ -286,6 +313,11 @@
      <pointsize>10</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(81, 81, 81);
+border-style: none;
+color: white;</string>
+   </property>
    <property name="inputMethodHints">
     <set>Qt::ImhDigitsOnly</set>
    </property>
@@ -306,6 +338,11 @@
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(81, 81, 81);
+border-style: none;
+color: white;</string>
    </property>
    <property name="inputMethodHints">
     <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
@@ -330,6 +367,21 @@
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: rgb(108, 108, 108);
+    border-style: none;
+    color: white;
+}
+
+QPushButton#pushButton:hover {
+     background-color: rgb(120, 120, 120);     
+}
+
+QPushButton#pushButton:pressed {
+     background-color: rgb(150, 150, 150);     
+}</string>
    </property>
    <property name="text">
     <string>Log in</string>
@@ -384,6 +436,21 @@
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: rgb(108, 108, 108);
+    border-style: none;
+    color: white;
+}
+
+QPushButton#quitButton:hover {
+     background-color: rgb(120, 120, 120);     
+}
+
+QPushButton#quitButton:pressed {
+     background-color: rgb(150, 150, 150);     
+}</string>
    </property>
    <property name="text">
     <string>Quit</string>

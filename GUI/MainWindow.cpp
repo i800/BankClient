@@ -21,6 +21,8 @@ MainWindow::~MainWindow()
 void MainWindow::setWaitingMode(const bool mode)
 {
     ui->makeTransactionButton->setDisabled(mode);
+    ui->refreshButton->setDisabled(mode);
+    ui->settingsButton->setDisabled(mode);
 }
 
 void MainWindow::requestForAccMoney()
@@ -32,7 +34,7 @@ void MainWindow::requestForAccMoney()
 void MainWindow::requestForCards()
 {
     setWaitingMode(true);
-    emit callForAccCardsAmount();
+    emit callForAccCards();
 }
 
 void MainWindow::requestForPayments()
@@ -41,27 +43,35 @@ void MainWindow::requestForPayments()
     emit callForPaymentsAmount();
 }
 
+void MainWindow::requestForTransaction()
+{
+
+}
+
 void MainWindow::reactGotAccMoney(quint64 money)
 {
-    QString str("Your money: ");
-    QMessageBox::information(this, "Information",
-                   str.append(QString::number(money)));
+    ui->accMoneyValueLabel->setText(QString::number(money));
     setWaitingMode(false);
 }
 
-void MainWindow::reactGotAccCardsAmount(unsigned cardsAmount)
+void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
 {
-    // TODO: Show all cards info.
-    QString str("Your number of cards: ");
-    QMessageBox::information(this, "Information",
-                             str.append(QString::number(cardsAmount)));
+    QMapIterator<quint64, quint8> iter(cards);
+    while (iter.hasNext())
+    {
+        iter.next();
+        QString str = QString::number(iter.key());
+        ui->cardsView->addItem(str.append(": ").
+            append(QString::number(iter.value())));
+    }
+
     setWaitingMode(false);
 }
 
 void MainWindow::reactGotPaymentsAmount(unsigned amount)
 {
-    // TODO: Show all cards info.
-        QString str("Your number of payments: ");
+    // TODO: Show all payments info.
+    QString str("Your number of payments: ");
     QMessageBox::information(this, "Information",
                              str.append(QString::number(amount)));
     setWaitingMode(false);

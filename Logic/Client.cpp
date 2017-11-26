@@ -143,7 +143,7 @@ void Client::reactCardsResponse()
     {
         GetCardsResponsePacket response;
         response.load(arr);
-        emit gotAccountCardsAmount(response.cards().size());
+        emit gotAccountCards(response.cards());
     }
     else
     {

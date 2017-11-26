@@ -41,7 +41,8 @@ SOURCES += \
     Protocol/Packets/ErrorPacket.cpp \
     Protocol/Packets/UserAuthResponsePacket.cpp \
     Protocol/Packets/GetPaymentsPacket.cpp \
-    Protocol/Packets/GetPaymentsResponsePacket.cpp
+    Protocol/Packets/GetPaymentsResponsePacket.cpp \
+    TransactionFrame.cpp
 
 HEADERS += \
     GUI/MainWindow.h \
@@ -61,11 +62,13 @@ HEADERS += \
     Protocol/Packets/ErrorPacket.h \
     Protocol/Packets/UserAuthResponsePacket.h \
     Protocol/Packets/GetPaymentsPacket.h \
-    Protocol/Packets/GetPaymentsResponsePacket.h
+    Protocol/Packets/GetPaymentsResponsePacket.h \
+    TransactionFrame.h
 
 FORMS += \
     GUI/MainWindow.ui \
-    GUI/AuthFrame.ui
+    GUI/AuthFrame.ui \
+    TransactionFrame.ui
 
 RESOURCES += \
     resourses.qrc

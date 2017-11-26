@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -24,20 +24,22 @@ public slots:
     void requestForAccMoney();
     void requestForCards();
     void requestForPayments();
+    void requestForTransaction();
     /**
       * Reactions.
       * Each reaction has a prefix 'react'.
       */
     void reactGotAccMoney(quint64);
-    void reactGotAccCardsAmount(uint);
+    void reactGotAccCards(QMap<quint64, quint8>&);
     void reactGotPaymentsAmount(uint);
     void reactError(QString);
 private:
     Ui::MainWindow *ui;
 
+
 signals:
     void callForAccMoney();
-    void callForAccCardsAmount();
+    void callForAccCards();
     void callForPaymentsAmount();
 };
 

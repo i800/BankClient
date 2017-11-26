@@ -36,11 +36,11 @@ public slots:
 private:
     Ui::MainWindow *ui;
 
-
 signals:
     void callForAccMoney();
     void callForAccCards();
     void callForPaymentsAmount();
+    void callForTransaction();
 };
 
 #endif // MAINWINDOW_H

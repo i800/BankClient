@@ -45,7 +45,8 @@ void MainWindow::requestForPayments()
 
 void MainWindow::requestForTransaction()
 {
-
+    setWaitingMode(true);
+    emit callForTransaction();
 }
 
 void MainWindow::reactGotAccMoney(quint64 money)

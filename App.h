@@ -4,6 +4,7 @@
 #include "Logic/Client.h"
 #include "GUI/AuthFrame.h"
 #include "GUI/MainWindow.h"
+#include "GUI/TransactionFrame.h"
 #include <QObject>
 
 class App : public QObject
@@ -15,6 +16,7 @@ private:
     // GUI.
     AuthFrame _authFrame;
     MainWindow _mainWindow;
+    TransactionFrame _transactionFrame;
     // Deleted class members.
     App(const App&) = delete;
     App& operator=(const App&) = delete;
@@ -22,6 +24,13 @@ public:
     explicit App(QObject *parent = nullptr);
 
 public slots:
+    /**
+     * Requests to the client.
+     * Each request to the client
+     * has a prefix 'request'.
+     */
+    void requestForTransaction();
+
     /** Reactions.
      * Each reaction has a prefix 'react'.
      */

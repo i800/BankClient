@@ -4,7 +4,7 @@
 #include <QFrame>
 
 namespace Ui {
-class TransactionFrame;
+    class TransactionFrame;
 }
 
 class TransactionFrame : public QFrame

@@ -5,7 +5,7 @@
 App::App(QObject *parent):
     QObject(parent)
 {
-    _client.start("217.147.175.29", 21025);//"platinium.ddns.net");
+    _client.start();//("217.147.175.29", 21025);//"platinium.ddns.net");
     _authFrame.show();
 
     connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),
@@ -19,6 +19,9 @@ App::App(QObject *parent):
 
     connect(&_mainWindow, SIGNAL(callForPaymentsAmount()),
             &_client, SLOT(requestForPayments()));
+
+    connect(&_mainWindow, SIGNAL(callForTransaction()),
+            this, SLOT(requestForTransaction()));
 
     connect(&_client, SIGNAL(disruption()), this, SLOT(reactDisruption()));
 
@@ -41,6 +44,11 @@ App::App(QObject *parent):
 #ifndef NDEBUG
     qDebug("App created.");
 #endif
+}
+
+void App::requestForTransaction()
+{
+    _transactionFrame.show();
 }
 
 void App::reactAuthPassed()

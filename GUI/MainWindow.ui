@@ -92,12 +92,38 @@
      <rect>
       <x>20</x>
       <y>90</y>
-      <width>150</width>
+      <width>91</width>
       <height>51</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(81, 81, 81);
+    color: white;
+    border-style: none;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+     background-color: rgb(120, 120, 120);     
+}
+
+QPushButton:pressed {
+     background-color: rgb(150, 150, 150);     
+}</string>
+    </property>
     <property name="text">
-     <string>MAKE TRANSACTION</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../resourses.qrc">
+      <normaloff>:/icons/Resourses/transaction.ico</normaloff>:/icons/Resourses/transaction.ico</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>45</width>
+      <height>45</height>
+     </size>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -192,7 +218,7 @@
      <string>0</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="cardsButton">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -236,7 +262,7 @@
 }</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="quitButton">
     <property name="geometry">
      <rect>
       <x>350</x>
@@ -280,6 +306,128 @@ QPushButton:pressed {
      </size>
     </property>
    </widget>
+   <widget class="QListWidget" name="paymentsView">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>291</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListWidget {
+    background-color: rgb(81, 81, 81);
+    color: white;
+    border-style: none;
+    border-radius: 15px;
+}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="paymentsButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>160</y>
+      <width>291</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(81, 81, 81);
+    color: white;
+    border-style: none;
+    border-radius: 10px;
+}</string>
+    </property>
+    <property name="text">
+     <string>PAYMENTS</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="refreshButton">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>90</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(81, 81, 81);
+    color: white;
+    border-style: none;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+     background-color: rgb(120, 120, 120);     
+}
+
+QPushButton:pressed {
+     background-color: rgb(150, 150, 150);     
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../resourses.qrc">
+      <normaloff>:/icons/Resourses/refresh_icon.png</normaloff>:/icons/Resourses/refresh_icon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="settingsButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>90</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(81, 81, 81);
+    color: white;
+    border-style: none;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+     background-color: rgb(120, 120, 120);     
+}
+
+QPushButton:pressed {
+     background-color: rgb(150, 150, 150);     
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../resourses.qrc">
+      <normaloff>:/icons/Resourses/setting_icon.png</normaloff>:/icons/Resourses/setting_icon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -290,14 +438,6 @@ QPushButton:pressed {
      <height>25</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>true</bool>
-   </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

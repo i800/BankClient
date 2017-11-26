@@ -7,8 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setWindowFlags(Qt::FramelessWindowHint
-                       | Qt::WindowStaysOnBottomHint);
+    this->setWindowFlags(Qt::WindowStaysOnBottomHint
+                       | Qt::MSWindowsFixedSizeDialogHint);
     this->setMinimumSize(size());
     this->setMaximumSize(size());
 }

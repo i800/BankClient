@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/icons">
         <file>Resourses/quit_icon.ico</file>
+        <file>Resourses/refresh_icon.png</file>
+        <file>Resourses/setting_icon.png</file>
+        <file>Resourses/transaction.ico</file>
     </qresource>
 </RCC>

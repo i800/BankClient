@@ -7,6 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::FramelessWindowHint
+                       | Qt::WindowStaysOnBottomHint);
+    this->setMinimumSize(size());
+    this->setMaximumSize(size());
 }
 
 MainWindow::~MainWindow()
@@ -16,9 +20,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::setWaitingMode(const bool mode)
 {
-    ui->getAccMoneyButton->setDisabled(mode);
-    ui->getCardsAmountButton->setDisabled(mode);
-    ui->getPaymentsAmountsButton->setDisabled(mode);
     ui->makeTransactionButton->setDisabled(mode);
 }
 

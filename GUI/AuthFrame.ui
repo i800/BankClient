@@ -372,6 +372,7 @@ color: white;</string>
     <string notr="true">QPushButton {
     background-color: rgb(108, 108, 108);
     border-style: none;
+    border-radius: 8px;
     color: white;
 }
 
@@ -441,6 +442,7 @@ QPushButton#pushButton:pressed {
     <string notr="true">QPushButton {
     background-color: rgb(108, 108, 108);
     border-style: none;
+    border-radius: 8px;
     color: white;
 }
 

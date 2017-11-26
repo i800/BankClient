@@ -66,3 +66,6 @@ HEADERS += \
 FORMS += \
     GUI/MainWindow.ui \
     GUI/AuthFrame.ui
+
+RESOURCES += \
+    resourses.qrc

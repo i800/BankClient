@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>Resourses/quit_icon.ico</file>
+    </qresource>
+</RCC>

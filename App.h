@@ -36,6 +36,7 @@ public slots:
      */
     void reactAuthPassed();
     void reactDisruption();
+    void reactOnTransactionFrameClose();
 };
 
 #endif // APP_H

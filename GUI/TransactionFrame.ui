@@ -170,5 +170,25 @@ QPushButton:pressed {
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TransactionFrame</receiver>
+   <slot>reactForClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>358</x>
+     <y>263</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>447</x>
+     <y>260</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>reactForClose()</slot>
+ </slots>
 </ui>

@@ -49,6 +49,11 @@ void MainWindow::requestForTransaction()
     emit callForTransaction();
 }
 
+void MainWindow::requestForQuit()
+{
+    exit(0);
+}
+
 void MainWindow::reactGotAccMoney(quint64 money)
 {
     ui->accMoneyValueLabel->setText(QString::number(money));

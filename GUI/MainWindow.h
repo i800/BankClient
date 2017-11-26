@@ -14,7 +14,6 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void setWaitingMode(const bool);
 public slots:
     /**
      * Requests to the client.
@@ -25,6 +24,7 @@ public slots:
     void requestForCards();
     void requestForPayments();
     void requestForTransaction();
+    void requestForQuit();
     /**
       * Reactions.
       * Each reaction has a prefix 'react'.
@@ -33,6 +33,8 @@ public slots:
     void reactGotAccCards(QMap<quint64, quint8>&);
     void reactGotPaymentsAmount(uint);
     void reactError(QString);
+
+    void setWaitingMode(const bool);
 private:
     Ui::MainWindow *ui;
 

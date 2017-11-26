@@ -18,3 +18,8 @@ void TransactionFrame::reactForClose()
 {
     this->close();
 }
+
+void TransactionFrame::closeEvent(QCloseEvent*)
+{
+    emit callForClose();
+}

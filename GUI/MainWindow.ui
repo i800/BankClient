@@ -481,6 +481,22 @@ QPushButton:pressed {
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>quitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>requestForQuit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>375</x>
+     <y>335</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>339</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <signal>buttonCh()</signal>
@@ -490,5 +506,6 @@ QPushButton:pressed {
   <slot>requestForCards()</slot>
   <slot>requestForPayments()</slot>
   <slot>requestForTransaction()</slot>
+  <slot>requestForQuit()</slot>
  </slots>
 </ui>

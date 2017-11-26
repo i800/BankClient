@@ -23,6 +23,9 @@ App::App(QObject *parent):
     connect(&_mainWindow, SIGNAL(callForTransaction()),
             this, SLOT(requestForTransaction()));
 
+    connect(&_transactionFrame, SIGNAL(callForClose()),
+            this, SLOT(reactOnTransactionFrameClose()));
+
     connect(&_client, SIGNAL(disruption()), this, SLOT(reactDisruption()));
 
     connect(&_client, SIGNAL(authFailed()), &_authFrame, SLOT(reactAuthFailed()));
@@ -64,4 +67,9 @@ void App::reactDisruption()
     _mainWindow.close();
     QMessageBox::information(0, "Error", "Sorry, connection with server lost");
     exit(0);
+}
+
+void App::reactOnTransactionFrameClose()
+{
+    _mainWindow.setWaitingMode(false);
 }

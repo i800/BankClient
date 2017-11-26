@@ -23,8 +23,12 @@ public slots:
      */
     void reactForClose();
 
+signals:
+    void callForClose();
+
 private:
     Ui::TransactionFrame *ui;
+    void closeEvent(QCloseEvent*);
 };
 
 #endif // TRANSACTIONFRAME_H

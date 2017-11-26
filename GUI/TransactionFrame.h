@@ -14,6 +14,12 @@ class TransactionFrame : public QFrame
 public:
     explicit TransactionFrame(QWidget *parent = 0);
     ~TransactionFrame();
+    void setCards(const QList<QString>&);
+
+    bool firstInit() const
+    {
+        return _firstInit;
+    }
 
 public slots:
     /**
@@ -29,6 +35,7 @@ signals:
 private:
     Ui::TransactionFrame *ui;
     void closeEvent(QCloseEvent*);
+    bool _firstInit;
 };
 
 #endif // TRANSACTIONFRAME_H

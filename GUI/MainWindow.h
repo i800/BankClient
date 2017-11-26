@@ -14,6 +14,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    inline const QList<QString>& cardsList()
+    {
+        return _cardsList;
+    }
+
 public slots:
     /**
      * Requests to the client.
@@ -24,6 +30,7 @@ public slots:
     void requestForCards();
     void requestForTransaction();
     void requestForQuit();
+
     /**
       * Reactions.
       * Each reaction has a prefix 'react'.
@@ -32,12 +39,12 @@ public slots:
     void reactGotAccCards(QMap<quint64, quint8>&);
     void reactGotPaymentsAmount(uint);
     void reactError(QString);
-    void reactOnCardClicked();
 
     void setWaitingMode(const bool);
     void setLoggedInCard(const quint64);
 private:
     Ui::MainWindow *ui;
+    QList<QString> _cardsList;
 
 signals:
     void callForAccMoney(quint64);

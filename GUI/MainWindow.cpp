@@ -88,6 +88,7 @@ void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
         iter.next();
         QString str = QString::number(iter.key());
         ui->cardsView->addItem(str);
+        _cardsList.append(str);
     }
 
     setWaitingMode(false);
@@ -106,10 +107,4 @@ void MainWindow::reactError(QString info)
 {
     QMessageBox::information(this, "Error", info);
     setWaitingMode(false);
-}
-
-void MainWindow::reactOnCardClicked()
-{
-    QString card(ui->cardsView->selectedItems().first()->text());
-
 }

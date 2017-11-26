@@ -4,5 +4,6 @@
         <file>Resourses/refresh_icon.png</file>
         <file>Resourses/setting_icon.png</file>
         <file>Resourses/transaction.ico</file>
+        <file>Resourses/title_icon.png</file>
     </qresource>
 </RCC>

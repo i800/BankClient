@@ -75,7 +75,11 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Online bank system</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../resourses.qrc">
+    <normaloff>:/icons/Resourses/title_icon.png</normaloff>:/icons/Resourses/title_icon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
@@ -95,6 +99,9 @@
       <width>91</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Make a transaction</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -359,6 +366,9 @@ QPushButton:pressed {
       <height>51</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>Refresh (manually)</string>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
     background-color: rgb(81, 81, 81);
@@ -397,6 +407,9 @@ QPushButton:pressed {
       <width>91</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string>Settings</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {

@@ -58,6 +58,7 @@ void MainWindow::reactGotAccMoney(quint64 money)
 void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
 {
     QMapIterator<quint64, quint8> iter(cards);
+    qDebug("cards displaying started.");
     while (iter.hasNext())
     {
         iter.next();
@@ -65,6 +66,7 @@ void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
         ui->cardsView->addItem(str.append(": ").
             append(QString::number(iter.value())));
     }
+    qDebug("cards displaying finished.");
 
     setWaitingMode(false);
 }

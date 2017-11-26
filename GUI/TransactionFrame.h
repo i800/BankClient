@@ -15,6 +15,14 @@ public:
     explicit TransactionFrame(QWidget *parent = 0);
     ~TransactionFrame();
 
+public slots:
+    /**
+     * Requests to the client.
+     * Each request to the client
+     * has a prefix 'request'.
+     */
+    void reactForClose();
+
 private:
     Ui::TransactionFrame *ui;
 };

@@ -6,9 +6,15 @@ TransactionFrame::TransactionFrame(QWidget *parent) :
     ui(new Ui::TransactionFrame)
 {
     ui->setupUi(this);
+    ui->cardChooser->addItem("");
 }
 
 TransactionFrame::~TransactionFrame()
 {
     delete ui;
+}
+
+void TransactionFrame::reactForClose()
+{
+    this->close();
 }

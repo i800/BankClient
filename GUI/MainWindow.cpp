@@ -30,10 +30,21 @@ void MainWindow::setLoggedInCard(const quint64 cardNumber)
     ui->loggedInCardValueLabel->setText(QString::number(cardNumber));
 }
 
-void MainWindow::requestForAccMoney()
+void MainWindow::requestForAccInfo()
 {
     setWaitingMode(true);
-    emit callForAccInfo();
+    QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
+    if (cards.empty())
+    {
+        // qDebug("Default");
+        emit callForAccMoney(ui->loggedInCardValueLabel->text().toULongLong());
+    }
+    else
+    {
+        // qDebug("NDefault");
+        emit callForAccMoney(cards.first()->text().toULongLong());
+        // qDebug(cards.first()->text().toStdString().c_str());
+    }
 }
 
 void MainWindow::requestForCards()
@@ -56,7 +67,17 @@ void MainWindow::requestForQuit()
 void MainWindow::reactGotAccMoney(quint64 money)
 {
     ui->accMoneyValueLabel->setText(QString::number(money));
-    setWaitingMode(false);
+    qDebug("Got acc money");
+
+    QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
+    if (cards.empty())
+    {
+        emit callForPayments(ui->loggedInCardValueLabel->text().toULongLong());
+    }
+    else
+    {
+        emit callForPayments(cards.first()->text().toULongLong());
+    }
 }
 
 void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
@@ -66,8 +87,7 @@ void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
     {
         iter.next();
         QString str = QString::number(iter.key());
-        ui->cardsView->addItem(str.append(": ").
-            append(QString::number(iter.value())));
+        ui->cardsView->addItem(str);
     }
 
     setWaitingMode(false);
@@ -86,4 +106,10 @@ void MainWindow::reactError(QString info)
 {
     QMessageBox::information(this, "Error", info);
     setWaitingMode(false);
+}
+
+void MainWindow::reactOnCardClicked()
+{
+    QString card(ui->cardsView->selectedItems().first()->text());
+
 }

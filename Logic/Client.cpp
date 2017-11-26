@@ -75,11 +75,11 @@ void Client::requestForAuth(quint64 cardNumber, QString pass)
     _connection->flush();
 }
 
-void Client::requestForAccMoney()
+void Client::requestForAccMoney(quint64 cardNumber)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAccMoneyResponse()));
 
-    _connection->write(GetAccountMoneyPacket(_session, _cardNumber).dump());
+    _connection->write(GetAccountMoneyPacket(_session, cardNumber).dump());
     _connection->flush();
 }
 
@@ -91,11 +91,11 @@ void Client::requestForCards()
     _connection->flush();
 }
 
-void Client::requestForPayments()
+void Client::requestForPayments(quint64 cardNumber)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactPaymentsResponse()));
 
-    _connection->write(GetPaymentsPacket(_session, _cardNumber).dump());
+    _connection->write(GetPaymentsPacket(_session, cardNumber).dump());
     _connection->flush();
 }
 

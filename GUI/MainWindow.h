@@ -20,7 +20,7 @@ public slots:
      * Each request to the client
      * has a prefix 'request'.
      */
-    void requestForAccMoney();
+    void requestForAccInfo();
     void requestForCards();
     void requestForTransaction();
     void requestForQuit();
@@ -32,6 +32,7 @@ public slots:
     void reactGotAccCards(QMap<quint64, quint8>&);
     void reactGotPaymentsAmount(uint);
     void reactError(QString);
+    void reactOnCardClicked();
 
     void setWaitingMode(const bool);
     void setLoggedInCard(const quint64);
@@ -39,7 +40,8 @@ private:
     Ui::MainWindow *ui;
 
 signals:
-    void callForAccInfo();
+    void callForAccMoney(quint64);
+    void callForPayments(quint64);
     void callForAccCards();
     void callForTransaction();
 };

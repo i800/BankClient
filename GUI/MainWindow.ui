@@ -453,7 +453,7 @@ QPushButton:pressed {
    <sender>refreshButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>requestForAccMoney()</slot>
+   <slot>requestForAccInfo()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>194</x>
@@ -502,7 +502,7 @@ QPushButton:pressed {
   <signal>buttonCh()</signal>
   <signal>callForAccMoney()</signal>
   <slot>testStuff()</slot>
-  <slot>requestForAccMoney()</slot>
+  <slot>requestForAccInfo()</slot>
   <slot>requestForCards()</slot>
   <slot>requestForPayments()</slot>
   <slot>requestForTransaction()</slot>

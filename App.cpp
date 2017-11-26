@@ -11,14 +11,14 @@ App::App(QObject *parent):
     connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),
             &_client, SLOT(requestForAuth(quint64, QString)));
 
-    connect(&_mainWindow, SIGNAL(callForAccInfo()),
-            &_client, SLOT(requestForAccMoney()));
+    connect(&_mainWindow, SIGNAL(callForAccMoney(quint64)),
+            &_client, SLOT(requestForAccMoney(quint64)));
 
     connect(&_mainWindow, SIGNAL(callForAccCards()),
             &_client, SLOT(requestForCards()));
 
-    connect(&_mainWindow, SIGNAL(callForAccInfo()),
-            &_client, SLOT(requestForPayments()));
+    connect(&_mainWindow, SIGNAL(callForPayments(quint64)),
+            &_client, SLOT(requestForPayments(quint64)));
 
     connect(&_mainWindow, SIGNAL(callForTransaction()),
             this, SLOT(requestForTransaction()));
@@ -60,6 +60,8 @@ void App::reactAuthPassed()
     _mainWindow.show();
     _mainWindow.setLoggedInCard(_client.cardNumber());
     _mainWindow.requestForCards();
+    //_client.requestForAccMoney(_client.cardNumber());
+    //_client.requestForPayments(_client.cardNumber());
 }
 
 void App::reactDisruption()

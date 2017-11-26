@@ -19,16 +19,16 @@ public:
     void start(const char* host = "localhost",
                const unsigned short port = 45654);
     quint64 cardNumber() const { return _cardNumber; }
-private slots:
+public slots:
     /**
      * Requests to the server.
      * Each request from the client
      * has a prefix 'request'.
      */
     void requestForAuth(quint64 cardNumber, QString pass);
-    void requestForAccMoney();
+    void requestForAccMoney(quint64);
     void requestForCards();
-    void requestForPayments();
+    void requestForPayments(quint64);
     // Other requests (...)
 
     /**

@@ -497,6 +497,22 @@ QPushButton:pressed {
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>cardsView</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>requestForAccInfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>423</x>
+     <y>104</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <signal>buttonCh()</signal>

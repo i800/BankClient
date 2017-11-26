@@ -93,7 +93,7 @@ void Client::requestForCards()
 
 void Client::requestForPayments()
 {
-    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
+    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactPaymentsResponse()));
 
     _connection->write(GetPaymentsPacket(_session, _cardNumber).dump());
     _connection->flush();
@@ -164,7 +164,7 @@ void Client::reactPaymentsResponse()
     }
     else
     {
-        emit error("Cannot get account cards, please, retry do this action later.");
+        emit error("Cannot get payments, please, retry do this action later.");
     }
 }
 

@@ -49,11 +49,12 @@ void GetCardsResponsePacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_amount, sizeof(_amount));
 
-    QMapIterator<quint64, quint8> iter(_cards);
-    while (iter.hasNext())
+    for (unsigned i(0); i < _amount; ++i)
     {
-        iter.next();
-        data.read((char*)&iter.key(), sizeof(iter.key()));
-        data.read((char*)&iter.value(), sizeof(iter.value()));
+        quint64 temp64(0);
+        quint8 temp8(0);
+        data.read((char*)&temp64, sizeof(quint64));
+        data.read((char*)&temp8, sizeof(quint8));
+        _cards.insert(temp64, temp8);
     }
 }

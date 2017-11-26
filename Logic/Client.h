@@ -18,6 +18,7 @@ public:
     ~Client();
     void start(const char* host = "localhost",
                const unsigned short port = 45654);
+    quint64 cardNumber() const { return _cardNumber; }
 private slots:
     /**
      * Requests to the server.

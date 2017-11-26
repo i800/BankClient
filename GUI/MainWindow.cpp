@@ -25,22 +25,21 @@ void MainWindow::setWaitingMode(const bool mode)
     ui->settingsButton->setDisabled(mode);
 }
 
+void MainWindow::setLoggedInCard(const quint64 cardNumber)
+{
+    ui->loggedInCardValueLabel->setText(QString::number(cardNumber));
+}
+
 void MainWindow::requestForAccMoney()
 {
     setWaitingMode(true);
-    emit callForAccMoney();
+    emit callForAccInfo();
 }
 
 void MainWindow::requestForCards()
 {
     setWaitingMode(true);
     emit callForAccCards();
-}
-
-void MainWindow::requestForPayments()
-{
-    setWaitingMode(true);
-    emit callForPaymentsAmount();
 }
 
 void MainWindow::requestForTransaction()
@@ -63,7 +62,6 @@ void MainWindow::reactGotAccMoney(quint64 money)
 void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
 {
     QMapIterator<quint64, quint8> iter(cards);
-    qDebug("cards displaying started.");
     while (iter.hasNext())
     {
         iter.next();
@@ -71,7 +69,6 @@ void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
         ui->cardsView->addItem(str.append(": ").
             append(QString::number(iter.value())));
     }
-    qDebug("cards displaying finished.");
 
     setWaitingMode(false);
 }

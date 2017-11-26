@@ -22,7 +22,6 @@ public slots:
      */
     void requestForAccMoney();
     void requestForCards();
-    void requestForPayments();
     void requestForTransaction();
     void requestForQuit();
     /**
@@ -35,13 +34,13 @@ public slots:
     void reactError(QString);
 
     void setWaitingMode(const bool);
+    void setLoggedInCard(const quint64);
 private:
     Ui::MainWindow *ui;
 
 signals:
-    void callForAccMoney();
+    void callForAccInfo();
     void callForAccCards();
-    void callForPaymentsAmount();
     void callForTransaction();
 };
 

@@ -7,7 +7,6 @@
 class UserAuthPacket : public Packet
 {
 private:
-    static const char _ID;
     long long _cardNumber;
     QString _password;
     quint32 _terminalId;
@@ -18,13 +17,16 @@ private:
     void specificLoad(QBuffer&);
 public:
     UserAuthPacket();
-    UserAuthPacket(const long long card, const QString& pass);
+    UserAuthPacket(const long long card, const quint32 terminalId,
+                   const QString& pass);
     UserAuthPacket(const UserAuthPacket&);
     // Selectors-modifiers.
     long long& card();
+    quint32& terminalId();
     QString& password();
     // Selectors.
     long long card() const;
+    quint32 terminalId() const;
     const QString& password() const;
 };
 

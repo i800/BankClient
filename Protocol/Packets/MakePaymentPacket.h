@@ -11,6 +11,7 @@ private:
     quint64 _from;
     quint64 _to;
     quint64 _amount;
+    quint32 _terminalId;
     QString _comment;
     //method configuration
     virtual char specificGetID() const;

@@ -10,7 +10,7 @@ private:
     static const char _ID;
     long long _cardNumber;
     QString _password;
-
+    quint32 _terminalId;
     // Interface methods.
     char specificGetID() const;
     PacketHolder specificClone() const;
@@ -18,7 +18,7 @@ private:
     void specificLoad(QBuffer&);
 public:
     UserAuthPacket();
-    UserAuthPacket(long long card, QString pass);
+    UserAuthPacket(const long long card, const QString& pass);
     UserAuthPacket(const UserAuthPacket&);
     // Selectors-modifiers.
     long long& card();

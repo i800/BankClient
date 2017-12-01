@@ -9,6 +9,7 @@ private:
     // Fields.
     quint64 _token;
     quint64 _accountId;
+    quint32 _terminalId;
     // MC.
     virtual char specificGetID() const;
     virtual PacketHolder specificClone() const;
@@ -16,7 +17,8 @@ private:
     virtual void specificLoad(QBuffer&);
 public:
     GetAccountMoneyPacket();
-    GetAccountMoneyPacket(const quint64 token, const quint64 accountId);
+    GetAccountMoneyPacket(const quint64 token, const quint64 accountId,
+                          const quint32 terminalId);
     ~GetAccountMoneyPacket();
 
     // Selector-modifiers.

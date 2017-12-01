@@ -9,6 +9,7 @@ private:
     //fields
     quint64 _token;
     quint64 _cardNumber;
+    quint32 _terminalId;
     //method setup
     virtual char specificGetID() const;
     virtual PacketHolder specificClone() const;
@@ -16,7 +17,8 @@ private:
     virtual void specificLoad(QBuffer&);
 public:
     GetPaymentsPacket();
-    GetPaymentsPacket(const quint64 token, const quint64 cardNumber);
+    GetPaymentsPacket(const quint64 token, const quint64 cardNumber,
+                      const quint32 terminalId);
     ~GetPaymentsPacket();
     //selector-modifiers
     quint64& token()

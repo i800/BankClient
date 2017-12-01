@@ -66,6 +66,19 @@ bool Client::processError(const QByteArray& arr)
     return !Packet::isPacket(arr) || Packet::getPacketId(arr) == 0;
 }
 
+quint32 Client::getTerminalId()
+{
+    int a(0);
+    int b(0);
+
+    __asm__("cpuid;"
+            :"=a"(b)
+            :"0"(a)
+            :"%ebx","%ecx","%edx");
+
+    return quint32(b);
+}
+
 void Client::requestForAuth(quint64 cardNumber, QString pass)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));

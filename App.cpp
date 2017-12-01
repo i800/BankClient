@@ -5,7 +5,7 @@
 App::App(QObject *parent):
     QObject(parent)
 {
-    _client.start("217.147.175.29", 21025);//"platinium.ddns.net");
+    _client.start();//("217.147.175.29", 21025);//"platinium.ddns.net");
     _authFrame.show();
 
     connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),
@@ -43,6 +43,8 @@ App::App(QObject *parent):
 
     connect(&_client, SIGNAL(gotPaymentsAmount(uint)),
             &_mainWindow, SLOT(reactGotPaymentsAmount(uint)));
+
+    qDebug(QString::number(_client.terminalId()).toStdString().c_str());
 
 #ifndef NDEBUG
     qDebug("App created.");

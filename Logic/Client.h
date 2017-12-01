@@ -9,16 +9,24 @@ private:
     bool _isPending;
     quint64 _session;
     quint64 _cardNumber;
+    quint32 _terminalId;
     QTcpSocket* _connection;
     Client(const Client&) = delete;
     Client& operator=(const Client&) = delete;
     bool processError(const QByteArray&);
+    quint32 getTerminalId();
 public:
     explicit Client();
     ~Client();
     void start(const char* host = "localhost",
                const unsigned short port = 45654);
     quint64 cardNumber() const { return _cardNumber; }
+
+    quint32 terminalId() const
+    {
+        return _terminalId;
+    }
+
 public slots:
     /**
      * Requests to the server.

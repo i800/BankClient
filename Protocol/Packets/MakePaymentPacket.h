@@ -20,6 +20,10 @@ private:
     virtual void specificLoad(QBuffer&);
 public:
      MakePaymentPacket();
+     MakePaymentPacket(const quint64 token, const quint64 from,
+                       const quint64 to, const quint64 amount,
+                       const quint32 terminalId,
+                       const QString& comment);
      ~MakePaymentPacket();
 
      //selector-modifiers
@@ -27,18 +31,27 @@ public:
      {
          return _token;
      }
+
      quint64& from()
      {
         return _from;
      }
+
      quint64& to()
      {
          return _to;
      }
+
      quint64& amount()
      {
          return _amount;
      }
+
+     quint32& terminalId()
+     {
+         return _terminalId;
+     }
+
      QString& comment()
      {
          return _comment;
@@ -49,18 +62,27 @@ public:
      {
          return _token;
      }
+
      quint64 from() const
      {
         return _from;
      }
+
      quint64 to() const
      {
          return _to;
      }
+
      quint64 amount() const
      {
          return _amount;
      }
+
+     quint32 terminalId() const
+     {
+         return _terminalId;
+     }
+
      const QString& comment() const
      {
          return _comment;

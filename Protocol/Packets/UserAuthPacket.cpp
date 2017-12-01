@@ -61,5 +61,5 @@ void UserAuthPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_cardNumber, sizeof(_cardNumber));
     data.read((char*)&_terminalId, sizeof(_terminalId));
-    _password = QString(buff.readAll());
+    _password = QString(data.readAll());
 }

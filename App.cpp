@@ -44,8 +44,6 @@ App::App(QObject *parent):
     connect(&_client, SIGNAL(gotPaymentsAmount(uint)),
             &_mainWindow, SLOT(reactGotPaymentsAmount(uint)));
 
-    qDebug(QString::number(_client.terminalId()).toStdString().c_str());
-
 #ifndef NDEBUG
     qDebug("App created.");
 #endif

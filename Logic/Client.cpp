@@ -84,7 +84,7 @@ void Client::requestForAuth(quint64 cardNumber, QString pass)
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
 
     _cardNumber = cardNumber;
-    _connection->write(UserAuthPacket(cardNumber, pass).dump());
+    _connection->write(UserAuthPacket(cardNumber, _terminalId, pass).dump());
     _connection->flush();
 }
 
@@ -93,7 +93,7 @@ void Client::requestForAccMoney(quint64 cardNumber)
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAccMoneyResponse()));
 
     qDebug(QString::number(cardNumber).toStdString().c_str());
-    _connection->write(GetAccountMoneyPacket(_session, cardNumber).dump());
+    _connection->write(GetAccountMoneyPacket(_session, cardNumber, _terminalId).dump());
     _connection->flush();
 }
 
@@ -101,7 +101,7 @@ void Client::requestForCards()
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
     // _cardNumber is not userId.
-    _connection->write(GetCardsPacket(_session, _cardNumber).dump());
+    _connection->write(GetCardsPacket(_session, _cardNumber, _terminalId).dump());
     _connection->flush();
 }
 
@@ -109,7 +109,7 @@ void Client::requestForPayments(quint64 cardNumber)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactPaymentsResponse()));
 
-    _connection->write(GetPaymentsPacket(_session, cardNumber).dump());
+    _connection->write(GetPaymentsPacket(_session, cardNumber, _terminalId).dump());
     _connection->flush();
 }
 

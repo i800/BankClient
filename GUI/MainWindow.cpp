@@ -23,6 +23,7 @@ void MainWindow::setWaitingMode(const bool mode)
     ui->makeTransactionButton->setDisabled(mode);
     ui->refreshButton->setDisabled(mode);
     ui->settingsButton->setDisabled(mode);
+    ui->cardsView->setDisabled(mode);
 }
 
 void MainWindow::setLoggedInCard(const quint64 cardNumber)

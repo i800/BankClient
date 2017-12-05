@@ -27,10 +27,16 @@ public slots:
      * Each request to the client
      * has a prefix 'request'.
      */
+    void requestForTransaction();
+    /**
+      * Reactions.
+      * Each reaction has a prefix 'react'.
+      */
     void reactForClose();
 
 signals:
     void callForClose();
+    void callForTransaction(quint64 to, quint64 amount, QString& comment);
 
 private:
     Ui::TransactionFrame *ui;

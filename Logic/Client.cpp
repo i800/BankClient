@@ -1,16 +1,4 @@
 #include "Client.h"
-#include "../Protocol/Packet.h"
-#include "../Protocol/Packets/ErrorPacket.h"
-#include "../Protocol/Packets/GetAccountMoneyPacket.h"
-#include "../Protocol/Packets/GetAccountMoneyResponsePacket.h"
-#include "../Protocol/Packets/GetCardsPacket.h"
-#include "../Protocol/Packets/GetCardsResponsePacket.h"
-#include "../Protocol/Packets/GetPaymentsPacket.h"
-#include "../Protocol/Packets/GetPaymentsResponsePacket.h"
-#include "../Protocol/Packets/MakePaymentPacket.h"
-#include "../Protocol/Packets/MakePaymentResponsePacket.h"
-#include "../Protocol/Packets/UserAuthPacket.h"
-#include "../Protocol/Packets/UserAuthResponsePacket.h"
 #include <cassert>
 
 Client::Client():
@@ -113,6 +101,14 @@ void Client::requestForPayments(quint64 cardNumber)
     _connection->flush();
 }
 
+void Client::requestForTransaction(quint64 from, quint64 to, quint64 amount, QString& comment)
+{
+    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactTransactionResponse()));
+
+    _connection->write(MakePaymentPacket(_session, from, to, amount, _terminalId, comment).dump());
+    _connection->flush();
+}
+
 void Client::reactAuthResponse()
 {
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
@@ -176,6 +172,24 @@ void Client::reactPaymentsResponse()
         GetPaymentsResponsePacket response;
         response.load(arr);
         emit gotPaymentsAmount(response.paymentsAmount()); // TODO response.getPayments()
+    }
+    else
+    {
+        emit error("Cannot get payments, please, retry do this action later.");
+    }
+}
+
+void Client::reactTransactionResponse()
+{
+    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactTransactionResponse()));
+
+    QByteArray arr = _connection->readAll();
+    if (!processError(arr))
+    {
+        MakePaymentResponsePacket response;
+        response.load(arr);
+        MakePaymentResponsePacket::PaymentStatus status = response.getPaymentStatus();
+        emit gotTransactionSuccess(status);
     }
     else
     {

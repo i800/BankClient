@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>485</width>
-    <height>315</height>
+    <height>374</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,7 +49,7 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>250</y>
+     <y>280</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -114,7 +114,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>110</y>
+     <y>140</y>
      <width>81</width>
      <height>119</height>
     </rect>
@@ -123,13 +123,13 @@ QPushButton:pressed {
     <string>   COMMENT:   </string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="commentArea">
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>120</y>
+     <y>180</y>
      <width>291</width>
-     <height>121</height>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -143,7 +143,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>250</y>
+     <y>280</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -166,6 +166,35 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>CANCEL</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="amountLine">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>124</y>
+     <width>291</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {
+    background-color: rgb(81, 81, 81);
+    color: white;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>120</y>
+     <width>71</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>AMOUNT:</string>
    </property>
   </widget>
  </widget>

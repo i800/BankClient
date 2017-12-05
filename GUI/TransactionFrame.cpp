@@ -1,5 +1,6 @@
 #include "TransactionFrame.h"
 #include "ui_TransactionFrame.h"
+#include <QMessageBox>
 
 TransactionFrame::TransactionFrame(QWidget *parent) :
     QFrame(parent),
@@ -26,9 +27,28 @@ void TransactionFrame::setCards(const QList<QString>& cardsList)
     _firstInit = false;
 }
 
+void TransactionFrame::requestForTransaction()
+{
+    bool cardOk(false);
+    quint64 cardNumber = ui->cardChooser->currentText().toULongLong(&cardOk);
+    bool amountOk(false);
+    quint64 amount = ui->amountLine->toPlainText().toULongLong(&amountOk);
+    if (cardOk && amountOk)
+    {
+       QString comment(ui->commentArea->toPlainText());
+       emit callForTransaction(cardNumber, amount, comment);
+    }
+    else
+    {
+        QMessageBox::information(0, "Error", "Check all the fields.");
+    }
+
+    emit callForClose();
+}
+
 void TransactionFrame::reactForClose()
 {
-    ui->textEdit->clear();
+    ui->commentArea->clear();
     this->close();
 }
 

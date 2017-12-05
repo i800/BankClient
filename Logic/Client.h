@@ -1,6 +1,18 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include <QTcpSocket>
+#include "../Protocol/Packet.h"
+#include "../Protocol/Packets/ErrorPacket.h"
+#include "../Protocol/Packets/GetAccountMoneyPacket.h"
+#include "../Protocol/Packets/GetAccountMoneyResponsePacket.h"
+#include "../Protocol/Packets/GetCardsPacket.h"
+#include "../Protocol/Packets/GetCardsResponsePacket.h"
+#include "../Protocol/Packets/GetPaymentsPacket.h"
+#include "../Protocol/Packets/GetPaymentsResponsePacket.h"
+#include "../Protocol/Packets/MakePaymentPacket.h"
+#include "../Protocol/Packets/MakePaymentResponsePacket.h"
+#include "../Protocol/Packets/UserAuthPacket.h"
+#include "../Protocol/Packets/UserAuthResponsePacket.h"
 
 class Client : public QObject
 {
@@ -37,7 +49,7 @@ public slots:
     void requestForAccMoney(quint64);
     void requestForCards();
     void requestForPayments(quint64);
-    // Other requests (...)
+    void requestForTransaction(quint64 from, quint64 to, quint64 amount, QString& comment);
 
     /**
      * Reactions for the server responses.
@@ -47,6 +59,7 @@ public slots:
     void reactAccMoneyResponse();
     void reactCardsResponse();
     void reactPaymentsResponse();
+    void reactTransactionResponse();
     void reactOnDisruption();
 
     void abortAll();
@@ -59,6 +72,7 @@ signals:
     void gotAccountCards(QMap<quint64, quint8>&);
     void gotAccountCardsAmount(uint);
     void gotPaymentsAmount(uint);
+    void gotTransactionSuccess(MakePaymentResponsePacket::PaymentStatus&);
     void error(QString);
 };
 

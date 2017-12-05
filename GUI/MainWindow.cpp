@@ -37,14 +37,11 @@ void MainWindow::requestForAccInfo()
     QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
     if (cards.empty())
     {
-        // qDebug("Default");
         emit callForAccMoney(ui->loggedInCardValueLabel->text().toULongLong());
     }
     else
     {
-        // qDebug("NDefault");
         emit callForAccMoney(cards.first()->text().toULongLong());
-        // qDebug(cards.first()->text().toStdString().c_str());
     }
 }
 
@@ -58,6 +55,23 @@ void MainWindow::requestForTransaction()
 {
     setWaitingMode(true);
     emit callForTransaction();
+}
+
+void MainWindow::requestForTransactionDone(quint64 to, quint64 amount, QString& comment)
+{
+    setWaitingMode(true);
+    QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
+    quint64 from(0);
+    if (cards.empty())
+    {
+        from = ui->loggedInCardValueLabel->text().toULongLong();
+    }
+    else
+    {
+        from = cards.first()->text().toULongLong();
+    }
+
+    emit callForTransactionDone(from, to, amount, comment);
 }
 
 void MainWindow::requestForQuit()

@@ -31,10 +31,10 @@ QByteArray MakePaymentPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_token, sizeof(_token));
+    data.append((char*)&_terminalId, sizeof(_terminalId));
     data.append((char*)&_from, sizeof(_from));
     data.append((char*)&_to, sizeof(_to));
     data.append((char*)&_amount, sizeof(_amount));
-    data.append((char*)&_terminalId, sizeof(_terminalId));
     std::string str = _comment.toStdString();
     data.append(str.c_str(), str.length()+1);
     return data;
@@ -43,9 +43,9 @@ QByteArray MakePaymentPacket::specificDump() const
 void MakePaymentPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
+    data.read((char*)&_terminalId, sizeof(_terminalId));
     data.read((char*)&_from, sizeof(_from));
     data.read((char*)&_to, sizeof(_to));
     data.read((char*)&_amount, sizeof(_amount));
-    data.read((char*)&_terminalId, sizeof(_terminalId));
     _comment = QString(data.readAll());
 }

@@ -31,14 +31,14 @@ QByteArray GetAccountMoneyPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_token, sizeof(_token));
-    data.append((char*)&_accountId, sizeof(_accountId));
     data.append((char*)&_terminalId, sizeof(_terminalId));
+    data.append((char*)&_accountId, sizeof(_accountId));
     return data;
 }
 
 void GetAccountMoneyPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
-    data.read((char*)&_accountId, sizeof(_accountId));
     data.read((char*)&_terminalId, sizeof(_terminalId));
+    data.read((char*)&_accountId, sizeof(_accountId));
 }

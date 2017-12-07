@@ -30,14 +30,14 @@ QByteArray GetPaymentsPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_token, sizeof(_token));
-    data.append((char*)&_cardNumber, sizeof(_cardNumber));
     data.append((char*)&_terminalId, sizeof(_terminalId));
+    data.append((char*)&_cardNumber, sizeof(_cardNumber));
     return data;
 }
 
 void GetPaymentsPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
-    data.read((char*)&_cardNumber, sizeof(_cardNumber));
     data.read((char*)&_terminalId, sizeof(_terminalId));
+    data.read((char*)&_cardNumber, sizeof(_cardNumber));
 }

@@ -30,14 +30,14 @@ QByteArray GetCardsPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_token, sizeof(_token));
-    data.append((char*)&_userId, sizeof(_userId));
     data.append((char*)&_terminalId, sizeof(_terminalId));
+    data.append((char*)&_userId, sizeof(_userId));
     return data;
 }
 
 void GetCardsPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
-    data.read((char*)&_userId, sizeof(_userId));
     data.read((char*)&_terminalId, sizeof(_terminalId));
+    data.read((char*)&_userId, sizeof(_userId));
 }

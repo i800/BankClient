@@ -51,15 +51,16 @@ QByteArray UserAuthPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_cardNumber, sizeof(_cardNumber));
-    data.append((char*)&_terminalId, sizeof(_terminalId));
     std::string str = _password.toStdString();
     data.append(str.c_str(), str.length() + 1);
+    data.append((char*)&_terminalId, sizeof(_terminalId));
     return data;
 }
 
 void UserAuthPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_cardNumber, sizeof(_cardNumber));
+    QByteArray str = data.readLine(6); //read 5 bytes
+    _password = QString(str);
     data.read((char*)&_terminalId, sizeof(_terminalId));
-    _password = QString(data.readAll());
 }

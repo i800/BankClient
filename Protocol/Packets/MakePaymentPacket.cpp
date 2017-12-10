@@ -10,6 +10,7 @@ MakePaymentPacket::MakePaymentPacket(const quint64 token, const quint64 from,
     _token(token),
     _from(from),
     _to(to),
+    _amount(amount),
     _terminalId(terminalId),
     _comment(comment)
 {}

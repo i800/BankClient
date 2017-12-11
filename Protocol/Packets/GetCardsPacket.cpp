@@ -1,16 +1,21 @@
+#include <QDebug>
 #include "GetCardsPacket.h"
+#include "GetCardsResponsePacket.h"
+#include "ErrorPacket.h"
+
+#include <iostream>
+using namespace std;
 
 GetCardsPacket::GetCardsPacket():
     _token(0),
-    _userId(0),
-    _terminalId(0)
+    _machineId(0),
+    _userId(0)
 {}
 
-GetCardsPacket::GetCardsPacket(const quint64 token, const quint64 userId,
-                               const quint32 terminalId):
+GetCardsPacket::GetCardsPacket(quint64 token, quint32 machineId ,quint64 userId):
     _token(token),
-    _userId(userId),
-    _terminalId(terminalId)
+    _machineId(machineId),
+    _userId(userId)
 {}
 
 GetCardsPacket::~GetCardsPacket()
@@ -30,7 +35,7 @@ QByteArray GetCardsPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_token, sizeof(_token));
-    data.append((char*)&_terminalId, sizeof(_terminalId));
+    data.append((char*)&_machineId, sizeof(_machineId));
     data.append((char*)&_userId, sizeof(_userId));
     return data;
 }
@@ -38,6 +43,6 @@ QByteArray GetCardsPacket::specificDump() const
 void GetCardsPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
-    data.read((char*)&_terminalId, sizeof(_terminalId));
+    data.read((char*)&_machineId, sizeof(_machineId));
     data.read((char*)&_userId, sizeof(_userId));
 }

@@ -5,7 +5,7 @@
 App::App(QObject *parent):
     QObject(parent)
 {
-    _client.start("127.0.0.1", 45654);//"platinium.ddns.net", 21025); //"217.147.175.29";
+    _client.start("217.147.175.29", 45654);//"platinium.ddns.net", 21025); //"217.147.175.29";
     _authFrame.show();
 
     connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),

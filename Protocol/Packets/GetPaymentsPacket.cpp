@@ -2,16 +2,25 @@
 
 GetPaymentsPacket::GetPaymentsPacket():
     _token(0),
-    _cardNumber(0),
-    _terminalId(0)
+    _machineId(0),
+    _cardNumber(0)
 {}
 
-GetPaymentsPacket::GetPaymentsPacket(const quint64 token, const quint64 cardNumber,
-                                     const quint32 terminalId):
+GetPaymentsPacket::GetPaymentsPacket(quint64 token, quint32 machineId, quint64 carnNum):
     _token(token),
-    _cardNumber(cardNumber),
-    _terminalId(terminalId)
+    _machineId(machineId),
+    _cardNumber(carnNum)
 {}
+
+GetPaymentsPacket::PaymentsType GetPaymentsPacket::getTypeById(char id) const
+{
+    switch(id)
+    {
+        case 1: return COMMITED_PAYMENTS;
+        case 2: return PERIODIC_PAYMENTS;
+        default: return UNKNOWN_PAYMENTS;
+    }
+}
 
 GetPaymentsPacket::~GetPaymentsPacket()
 {}
@@ -30,7 +39,7 @@ QByteArray GetPaymentsPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_token, sizeof(_token));
-    data.append((char*)&_terminalId, sizeof(_terminalId));
+    data.append((char*)&_machineId, sizeof(_machineId));
     data.append((char*)&_cardNumber, sizeof(_cardNumber));
     return data;
 }
@@ -38,6 +47,6 @@ QByteArray GetPaymentsPacket::specificDump() const
 void GetPaymentsPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
-    data.read((char*)&_terminalId, sizeof(_terminalId));
+    data.read((char*)&_machineId, sizeof(_machineId));
     data.read((char*)&_cardNumber, sizeof(_cardNumber));
 }

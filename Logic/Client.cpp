@@ -81,7 +81,7 @@ void Client::requestForAccMoney(quint64 cardNumber)
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAccMoneyResponse()));
 
     qDebug(QString::number(cardNumber).toStdString().c_str());
-    _connection->write(GetAccountMoneyPacket(_session, cardNumber, _terminalId).dump());
+    _connection->write(GetAccountMoneyPacket(_session, _terminalId, cardNumber).dump());
     _connection->flush();
 }
 

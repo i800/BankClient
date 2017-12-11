@@ -15,7 +15,6 @@ private:
     virtual PacketHolder specificClone() const;
     virtual QByteArray specificDump() const;
     virtual void specificLoad(QBuffer&);
-    virtual PacketHolder specificHandle() const;
 public:
     CancelPeriodicPaymentPacket(quint64 t = 0, quint64 mi = 0, quint64 pi = 0);
     ~CancelPeriodicPaymentPacket();

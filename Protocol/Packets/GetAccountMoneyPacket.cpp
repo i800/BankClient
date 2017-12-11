@@ -1,17 +1,18 @@
 #include "GetAccountMoneyPacket.h"
+#include "GetAccountMoneyResponsePacket.h"
+#include "ErrorPacket.h"
 
 GetAccountMoneyPacket::GetAccountMoneyPacket():
     _token(0),
-    _accountId(0),
-    _terminalId(0)
+    _machineId(0),
+    _accountId(0)
 {}
 
 GetAccountMoneyPacket::GetAccountMoneyPacket
-    (const quint64 token, const quint64 accountId,
-     const quint32 terminalId):
+    (quint64 token, quint32 machineId, quint64 accountId):
     _token(token),
-    _accountId(accountId),
-    _terminalId(terminalId)
+    _machineId(machineId),
+    _accountId(accountId)
 {}
 
 GetAccountMoneyPacket::~GetAccountMoneyPacket()
@@ -31,7 +32,7 @@ QByteArray GetAccountMoneyPacket::specificDump() const
 {
     QByteArray data;
     data.append((char*)&_token, sizeof(_token));
-    data.append((char*)&_terminalId, sizeof(_terminalId));
+    data.append((char*)&_machineId, sizeof(_machineId));
     data.append((char*)&_accountId, sizeof(_accountId));
     return data;
 }
@@ -39,6 +40,6 @@ QByteArray GetAccountMoneyPacket::specificDump() const
 void GetAccountMoneyPacket::specificLoad(QBuffer& data)
 {
     data.read((char*)&_token, sizeof(_token));
-    data.read((char*)&_terminalId, sizeof(_terminalId));
+    data.read((char*)&_machineId, sizeof(_machineId));
     data.read((char*)&_accountId, sizeof(_accountId));
 }

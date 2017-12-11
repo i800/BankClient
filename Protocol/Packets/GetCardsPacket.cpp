@@ -1,10 +1,6 @@
 #include <QDebug>
 #include "GetCardsPacket.h"
 #include "GetCardsResponsePacket.h"
-#include "ErrorPacket.h"
-
-#include <iostream>
-using namespace std;
 
 GetCardsPacket::GetCardsPacket():
     _token(0),

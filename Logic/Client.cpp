@@ -89,7 +89,7 @@ void Client::requestForCards()
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
     // _cardNumber is not userId.
-    _connection->write(GetCardsPacket(_session, _cardNumber, _terminalId).dump());
+    _connection->write(GetCardsPacket(_session, _terminalId, _cardNumber).dump());
     _connection->flush();
 }
 

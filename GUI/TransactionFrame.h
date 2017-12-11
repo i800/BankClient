@@ -36,7 +36,7 @@ public slots:
 
 signals:
     void callForClose();
-    void callForTransaction(quint64 to, quint64 amount, QString& comment);
+    void callForTransaction(quint64, quint64, QString&);
 
 private:
     Ui::TransactionFrame *ui;

@@ -29,7 +29,7 @@ public slots:
     void requestForAccInfo();
     void requestForCards();
     void requestForTransaction();
-    void requestForTransactionDone(quint64 to, quint64 amount, QString& comment);
+    void requestForTransactionDone(quint64, quint64, QString&);
     void requestForQuit();
 
     /**
@@ -52,7 +52,7 @@ signals:
     void callForPayments(quint64);
     void callForAccCards();
     void callForTransaction();
-    void callForTransactionDone(quint64 from, quint64 to, quint64 amount, QString& comment);
+    void callForTransactionDone(quint64, quint64, quint64, QString&);
 };
 
 #endif // MAINWINDOW_H

@@ -43,7 +43,8 @@ SOURCES += \
     Protocol/Packets/GetPaymentsPacket.cpp \
     Protocol/Packets/GetPaymentsResponsePacket.cpp \
     GUI/TransactionFrame.cpp \
-    Protocol/Packets/CancelPeriodicPayment.cpp
+    Protocol/Packets/CancelPeriodicPayment.cpp \
+    Protocol/Packets/SuccessPacket.cpp
 
 HEADERS += \
     GUI/MainWindow.h \
@@ -65,7 +66,8 @@ HEADERS += \
     Protocol/Packets/GetPaymentsPacket.h \
     Protocol/Packets/GetPaymentsResponsePacket.h \
     GUI/TransactionFrame.h \
-    Protocol/Packets/CancelPeriodicPaymentPacket.h
+    Protocol/Packets/CancelPeriodicPaymentPacket.h \
+    Protocol/Packets/SuccessPacket.h
 
 FORMS += \
     GUI/MainWindow.ui \

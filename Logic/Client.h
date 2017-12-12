@@ -13,6 +13,7 @@
 #include "../Protocol/Packets/MakePaymentResponsePacket.h"
 #include "../Protocol/Packets/UserAuthPacket.h"
 #include "../Protocol/Packets/UserAuthResponsePacket.h"
+#include "../Protocol/Packets/UserLogoutPacket.h"
 
 class Client : public QObject
 {

@@ -46,6 +46,7 @@ void Client::abortAll()
 
 void Client::closeAll()
 {
+    _connection->write(UserLogoutPacket(_session, _terminalId).dump());
     exit(0);
 }
 

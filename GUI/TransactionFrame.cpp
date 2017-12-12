@@ -2,7 +2,7 @@
 #include "ui_TransactionFrame.h"
 #include <QMessageBox>
 
-TransactionFrame::TransactionFrame(QWidget *parent) :
+TransactionFrame::TransactionFrame(QWidget *parent):
     QFrame(parent),
     ui(new Ui::TransactionFrame),
     _firstInit(true)
@@ -44,6 +44,7 @@ void TransactionFrame::requestForTransaction()
     }
 
     emit callForClose();
+    reactForClose();
 }
 
 void TransactionFrame::reactForClose()

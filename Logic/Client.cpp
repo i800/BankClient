@@ -72,7 +72,7 @@ void Client::requestForAuth(quint64 cardNumber, QString pass)
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
 
     _cardNumber = cardNumber;
-    _connection->write(UserAuthPacket(cardNumber, _terminalId, pass).dump());
+    _connection->write(UserAuthPacket(cardNumber, pass, _terminalId).dump());
     _connection->flush();
 }
 

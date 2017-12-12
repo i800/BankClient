@@ -3,16 +3,18 @@
 
 #include "../Packet.h"
 
-class MakePaymentPacket : public Packet
+class  MakePaymentPacket : public Packet
 {
 private:
     //fields
     quint64 _token;
+    quint32 _machineId;
     quint64 _from;
     qint64 _to;
-    quint64 _amount;
-    quint32 _terminalId;
+    qint64 _amount;
+    quint64 _periodicity;
     QString _comment;
+    QString _technicalComment;
     //method configuration
     virtual char specificGetID() const;
     virtual PacketHolder specificClone() const;
@@ -21,15 +23,20 @@ private:
 public:
      MakePaymentPacket();
      MakePaymentPacket(const quint64 token, const quint64 from,
-                       const quint64 to, const quint64 amount,
-                       const quint32 terminalId,
-                       const QString& comment);
+                        const qint64 to, const qint64 amount,
+                        const quint32 machinelId, quint64 periodicity,
+                        const QString& comment, const QString& technicalComment);
      ~MakePaymentPacket();
 
      //selector-modifiers
      quint64& token()
      {
          return _token;
+     }
+
+     quint32& machineId()
+     {
+         return _machineId;
      }
 
      quint64& from()
@@ -42,14 +49,14 @@ public:
          return _to;
      }
 
-     quint64& amount()
+     qint64& amount()
      {
          return _amount;
      }
 
-     quint32& terminalId()
+     quint64& periodicity()
      {
-         return _terminalId;
+         return _periodicity;
      }
 
      QString& comment()
@@ -57,10 +64,20 @@ public:
          return _comment;
      }
 
+     QString& technicalComment()
+     {
+         return _technicalComment;
+     }
+
      //selectors
      quint64 token() const
      {
          return _token;
+     }
+
+     quint32 machineId() const
+     {
+         return _machineId;
      }
 
      quint64 from() const
@@ -73,19 +90,24 @@ public:
          return _to;
      }
 
-     quint64 amount() const
+     qint64 amount() const
      {
          return _amount;
      }
 
-     quint32 terminalId() const
+     quint64 periodicity() const
      {
-         return _terminalId;
+         return _periodicity;
      }
 
      const QString& comment() const
      {
          return _comment;
+     }
+
+     const QString& technicalComment() const
+     {
+         return _technicalComment;
      }
 };
 

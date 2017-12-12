@@ -105,7 +105,7 @@ void Client::requestForTransaction(quint64 from, quint64 to, quint64 amount, QSt
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactTransactionResponse()));
 
-    _connection->write(MakePaymentPacket(_session, from, to, amount, _terminalId, comment).dump());
+    _connection->write(MakePaymentPacket(_session, from, (qint64)to, (qint64)amount, _terminalId, quint64(0), comment, comment).dump());
     _connection->flush();
 }
 

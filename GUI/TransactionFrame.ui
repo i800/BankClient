@@ -84,7 +84,7 @@ QPushButton:pressed {
     </rect>
    </property>
    <property name="text">
-    <string>  FROM CARD:</string>
+    <string>  TO CARD:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="cardChooser">

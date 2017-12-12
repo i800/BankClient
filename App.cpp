@@ -71,7 +71,7 @@ void App::reactAuthPassed()
     _mainWindow.show();
     _mainWindow.setLoggedInCard(_client.cardNumber());
     _mainWindow.requestForCards();
-    //_client.requestForAccMoney(_client.cardNumber());
+    _client.requestForAccMoney(_client.cardNumber());
     //_client.requestForPayments(_client.cardNumber());
 }
 

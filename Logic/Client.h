@@ -78,4 +78,6 @@ signals:
     void error(QString);
 };
 
+QMap<quint64, QPair<quint64, quint64>> convertToMap(const GetPaymentsResponsePacket&);
+
 #endif // CLIENT_H

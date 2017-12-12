@@ -172,7 +172,7 @@ void Client::reactPaymentsResponse()
     {
         GetPaymentsResponsePacket response;
         response.load(arr);
-        emit gotPaymentsAmount(response.paymentsAmount()); // TODO response.getPayments()
+        //emit gotPaymentsAmount(response.); // TODO response.getPayments()
     }
     else
     {
@@ -205,4 +205,17 @@ void Client::reactOnDisruption()
 #ifndef NDEBUG
     qFatal("Connection disrupted.");
 #endif
+}
+
+QMap<quint64, QPair<quint64, quint64>> convertToMap(const GetPaymentsResponsePacket& packet)
+{
+    QMap<quint64, QPair<quint64, quint64>> data;
+    quint16 amount(packet.paymentsAmount());
+    for (quint16 i(0); i < amount; ++i)
+    {
+        data.insert(packet.paymentId(i),
+                    QPair<quint64, quint64>(packet.to(i), packet.amount(i)));
+    }
+
+    return data;
 }

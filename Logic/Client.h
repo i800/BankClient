@@ -73,7 +73,7 @@ signals:
     void gotAccountMoney(quint64);
     void gotAccountCards(QMap<quint64, quint8>&);
     void gotAccountCardsAmount(uint);
-    void gotPaymentsAmount(uint);
+    void gotPayments(QMap<quint64, QPair<quint64, quint64>>&);
     void gotTransactionSuccess(MakePaymentResponsePacket::PaymentStatus&);
     void error(QString);
 };

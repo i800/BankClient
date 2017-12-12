@@ -113,12 +113,20 @@ void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
     requestForAccInfo();
 }
 
-void MainWindow::reactGotPaymentsAmount(unsigned amount)
+void MainWindow::reactGotPayments(QMap<quint64, QPair<quint64, quint64>>& payments)
 {
-    // TODO: Show all payments info.
-    QString str("Your number of payments: ");
-    QMessageBox::information(this, "Information",
-                             str.append(QString::number(amount)));
+    ui->paymentsView->clear();
+
+    QMapIterator<quint64, QPair<quint64, quint64>> iter(payments);
+    while (iter.hasNext())
+    {
+        iter.next();
+        QString pId = QString::number(iter.key());
+        QString pTo = QString::number(iter.value().first);
+        QString pAm = QString::number(iter.value().second);
+        ui->paymentsView->addItem(QString("ID\(").append(pId).append("\) to card: ")
+                            .append(pTo).append(" amount (c. u.): ").append(pAm));
+    }
     setWaitingMode(false);
 }
 

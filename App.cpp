@@ -47,8 +47,8 @@ App::App(QObject *parent):
     connect(&_client, SIGNAL(gotAccountCards(QMap<quint64, quint8>&)),
             &_mainWindow, SLOT(reactGotAccCards(QMap<quint64, quint8>&)));
 
-    connect(&_client, SIGNAL(gotPaymentsAmount(uint)),
-            &_mainWindow, SLOT(reactGotPaymentsAmount(uint)));
+    connect(&_client, SIGNAL(gotPayments(QMap<quint64, QPair<quint64, quint64>>&)),
+            &_mainWindow, SLOT(reactGotPayments(QMap<quint64, QPair<quint64, quint64>>&)));
 
 #ifndef NDEBUG
     qDebug("App created.");

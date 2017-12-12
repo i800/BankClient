@@ -38,7 +38,7 @@ public slots:
       */
     void reactGotAccMoney(quint64);
     void reactGotAccCards(QMap<quint64, quint8>&);
-    void reactGotPaymentsAmount(uint);
+    void reactGotPayments(QMap<quint64, QPair<quint64, quint64>>&);
     void reactError(QString);
 
     void setWaitingMode(const bool);

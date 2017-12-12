@@ -172,7 +172,8 @@ void Client::reactPaymentsResponse()
     {
         GetPaymentsResponsePacket response;
         response.load(arr);
-        //emit gotPaymentsAmount(response.); // TODO response.getPayments()
+        QMap<quint64, QPair<quint64, quint64>> payments(convertToMap(response));
+        emit gotPayments(payments);
     }
     else
     {

@@ -196,7 +196,7 @@ void Client::reactTransactionResponse()
     }
     else
     {
-        emit error("Cannot get payments, please, retry do this action later.");
+        emit error("Cannot make a transaction, please, retry do this action later.");
     }
 }
 

@@ -49,6 +49,9 @@ void TransactionFrame::requestForTransaction()
 
 void TransactionFrame::reactForClose()
 {
+//    ui->cardChooser->
+    ui->amountSB->setValue(0);
+    ui->timeSB->setValue(0);
     ui->commentArea->clear();
     this->close();
 }

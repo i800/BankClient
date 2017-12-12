@@ -30,7 +30,7 @@ void AuthFrame::requestForAuth()
     QString pass = ui->in_password->text();
     bool cardnumOk(false);
     quint64 cardnumConv = cardnum.toULongLong(&cardnumOk);
-    if (cardnumOk) // && cardnum.length() == 19 && pass.length() > 7)
+    if (cardnumOk && pass.length() == 4)
     {
         emit callForAuth(cardnumConv, pass);
         setWaitingMode(true);

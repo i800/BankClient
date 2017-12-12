@@ -120,8 +120,6 @@ void Client::reactAuthResponse()
         UserAuthResponsePacket response;
         response.load(arr);
         _session = response.token();
-        qDebug("session: ");
-        qDebug(QString::number(_session).toStdString().c_str());
         emit authPassed();
     }
     else

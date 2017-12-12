@@ -2,7 +2,7 @@
 #include "ui_MainWindow.h"
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -35,6 +35,7 @@ void MainWindow::setLoggedInCard(const quint64 cardNumber)
 void MainWindow::requestForAccInfo()
 {
     setWaitingMode(true);
+
     QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
     if (cards.empty())
     {
@@ -83,7 +84,6 @@ void MainWindow::requestForQuit()
 void MainWindow::reactGotAccMoney(quint64 money)
 {
     ui->accMoneyValueLabel->setText(QString::number(money));
-    qDebug("Got acc money");
 
     QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
     if (cards.empty())
@@ -94,6 +94,8 @@ void MainWindow::reactGotAccMoney(quint64 money)
     {
         emit callForPayments(cards.first()->text().toULongLong());
     }
+
+    setWaitingMode(false);
 }
 
 void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
@@ -108,6 +110,7 @@ void MainWindow::reactGotAccCards(QMap<quint64, quint8>& cards)
     }
 
     setWaitingMode(false);
+    requestForAccInfo();
 }
 
 void MainWindow::reactGotPaymentsAmount(unsigned amount)

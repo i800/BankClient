@@ -23,9 +23,9 @@ private:
 public:
      MakePaymentPacket();
      MakePaymentPacket(const quint64 token, const quint64 from,
-                        const qint64 to, const qint64 amount,
-                        const quint32 machinelId, quint64 periodicity,
-                        const QString& comment, const QString& technicalComment);
+                       const qint64 to, const qint64 amount,
+                       const quint32 machinelId, quint64 periodicity,
+                       const QString& comment, const QString& technicalComment);
      ~MakePaymentPacket();
 
      //selector-modifiers

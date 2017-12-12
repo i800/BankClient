@@ -58,7 +58,7 @@ void MainWindow::requestForTransaction()
     emit callForTransaction();
 }
 
-void MainWindow::requestForTransactionDone(quint64 to, quint64 amount, QString& comment)
+void MainWindow::requestForTransactionDone(quint64 to, quint64 amount, quint64 time, QString& comment)
 {
     setWaitingMode(true);
     QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
@@ -72,7 +72,7 @@ void MainWindow::requestForTransactionDone(quint64 to, quint64 amount, QString& 
         from = cards.first()->text().toULongLong();
     }
 
-    emit callForTransactionDone(from, to, amount, comment);
+    emit callForTransactionDone(from, to, amount, time, comment);
 }
 
 void MainWindow::requestForQuit()

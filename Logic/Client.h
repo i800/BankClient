@@ -50,7 +50,8 @@ public slots:
     void requestForAccMoney(quint64);
     void requestForCards();
     void requestForPayments(quint64);
-    void requestForTransaction(quint64 from, quint64 to, quint64 amount, QString& comment);
+    void requestForTransaction(quint64 from, quint64 to, quint64 amount,
+                               quint64 time, QString& comment);
 
     /**
      * Reactions for the server responses.

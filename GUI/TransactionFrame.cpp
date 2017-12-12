@@ -31,12 +31,12 @@ void TransactionFrame::requestForTransaction()
 {
     bool cardOk(false);
     quint64 cardNumber = ui->cardChooser->currentText().toULongLong(&cardOk);
-    bool amountOk(false);
-    quint64 amount = ui->amountLine->toPlainText().toULongLong(&amountOk);
-    if (cardOk && amountOk)
+    quint64 amount = quint64(ui->amountSB->value());
+    if (cardOk && amount > 0)
     {
        QString comment(ui->commentArea->toPlainText());
-       emit callForTransaction(cardNumber, amount, comment);
+       int time = ui->timeSB->value();
+       emit callForTransaction(cardNumber, amount, time, comment);
     }
     else
     {

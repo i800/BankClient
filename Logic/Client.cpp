@@ -102,11 +102,11 @@ void Client::requestForPayments(quint64 cardNumber)
     _connection->flush();
 }
 
-void Client::requestForTransaction(quint64 from, quint64 to, quint64 amount, QString& comment)
+void Client::requestForTransaction(quint64 from, quint64 to, quint64 amount, quint64 time, QString& comment)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactTransactionResponse()));
 
-    _connection->write(MakePaymentPacket(_session, from, (qint64)to, (qint64)amount, _terminalId, quint64(0), comment, comment).dump());
+    _connection->write(MakePaymentPacket(_session, from, qint64(to), qint64(amount), _terminalId, time, comment, comment).dump());
     _connection->flush();
 }
 

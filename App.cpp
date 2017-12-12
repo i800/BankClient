@@ -23,14 +23,14 @@ App::App(QObject *parent):
     connect(&_mainWindow, SIGNAL(callForTransaction()),
             this, SLOT(requestForTransaction()));
 
-    connect(&_mainWindow, SIGNAL(callForTransactionDone(quint64, quint64, quint64, QString&)),
-            &_client, SLOT(requestForTransaction(quint64, quint64, quint64, QString&)));
+    connect(&_mainWindow, SIGNAL(callForTransactionDone(quint64, quint64, quint64, quint64, QString&)),
+            &_client, SLOT(requestForTransaction(quint64, quint64, quint64, quint64, QString&)));
 
     connect(&_transactionFrame, SIGNAL(callForClose()),
             this, SLOT(reactOnTransactionFrameClose()));
 
-    connect(&_transactionFrame, SIGNAL(callForTransaction(quint64, quint64, QString&)),
-            &_mainWindow, SLOT(requestForTransactionDone(quint64, quint64, QString&)));
+    connect(&_transactionFrame, SIGNAL(callForTransaction(quint64, quint64, quint64, QString&)),
+            &_mainWindow, SLOT(requestForTransactionDone(quint64, quint64, quint64, QString&)));
 
     connect(&_client, SIGNAL(disruption()), this, SLOT(reactDisruption()));
 

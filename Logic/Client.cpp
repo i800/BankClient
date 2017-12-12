@@ -98,7 +98,7 @@ void Client::requestForPayments(quint64 cardNumber)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactPaymentsResponse()));
 
-    _connection->write(GetPaymentsPacket(_session, cardNumber, _terminalId).dump());
+    _connection->write(GetPaymentsPacket(_session, _terminalId, cardNumber).dump());
     _connection->flush();
 }
 

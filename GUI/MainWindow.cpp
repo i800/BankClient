@@ -24,6 +24,7 @@ void MainWindow::setWaitingMode(const bool mode)
     ui->refreshButton->setDisabled(mode);
     ui->settingsButton->setDisabled(mode);
     ui->cardsView->setDisabled(mode);
+    ui->quitButton->setDisabled(mode);
 }
 
 void MainWindow::setLoggedInCard(const quint64 cardNumber)

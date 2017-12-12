@@ -27,7 +27,7 @@ private:
     virtual void specificLoad(QBuffer&);
 public:
     GetPaymentsPacket();
-    GetPaymentsPacket(quint64 token, quint32 machineId, quint64 carnNum);
+    GetPaymentsPacket(quint64 token, quint32 machineId, quint64 cardNum);
     ~GetPaymentsPacket();
 
     //selector-modifiers

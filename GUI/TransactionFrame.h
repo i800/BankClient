@@ -3,7 +3,8 @@
 
 #include <QFrame>
 
-namespace Ui {
+namespace Ui
+{
     class TransactionFrame;
 }
 

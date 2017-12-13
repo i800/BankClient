@@ -26,11 +26,20 @@ App::App(QObject *parent):
     connect(&_mainWindow, SIGNAL(callForTransactionDone(quint64, quint64, quint64, quint64, QString&)),
             &_client, SLOT(requestForTransaction(quint64, quint64, quint64, quint64, QString&)));
 
+    connect(&_mainWindow, SIGNAL(callForCancellingDone(quint64)),
+            &_client, SLOT(requestForPCancelling(quint64)));
+
     connect(&_transactionFrame, SIGNAL(callForClose()),
             this, SLOT(reactOnTransactionFrameClose()));
 
     connect(&_transactionFrame, SIGNAL(callForTransaction(quint64, quint64, quint64, QString&)),
             &_mainWindow, SLOT(requestForTransactionDone(quint64, quint64, quint64, QString&)));
+
+    connect(&_pCancellingFrame, SIGNAL(callForClose()),
+            this, SLOT(reactOnTransactionFrameClose()));
+
+    connect(&_pCancellingFrame, SIGNAL(callForPCancelling(quint64)),
+            &_mainWindow, SLOT(requestForCancellingDone(quint64)));
 
     connect(&_client, SIGNAL(disruption()), this, SLOT(reactDisruption()));
 
@@ -63,6 +72,11 @@ void App::requestForTransaction()
         QList<QString> temp(_mainWindow.cardsList());
         _transactionFrame.setCards(temp);
     }
+}
+
+void App::requestForPCancelling()
+{
+    _pCancellingFrame.show();
 }
 
 void App::reactAuthPassed()

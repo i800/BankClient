@@ -76,6 +76,12 @@ void MainWindow::requestForTransactionDone(quint64 to, quint64 amount, quint64 t
     emit callForTransactionDone(from, to, amount, time, comment);
 }
 
+void MainWindow::requestForCancellingDone(quint64 id)
+{
+    setWaitingMode(true);
+    emit callForCancellingDone(id);
+}
+
 void MainWindow::requestForQuit()
 {
     exit(0);
@@ -124,7 +130,7 @@ void MainWindow::reactGotPayments(QMap<quint64, QPair<quint64, quint64>>& paymen
         QString pId = QString::number(iter.key());
         QString pTo = QString::number(iter.value().first);
         QString pAm = QString::number(iter.value().second);
-        ui->paymentsView->addItem(QString("ID\(").append(pId).append("\) to card: ")
+        ui->paymentsView->addItem(QString("ID(").append(pId).append(") to card: ")
                             .append(pTo).append(" amount (c. u.): ").append(pAm));
     }
     setWaitingMode(false);

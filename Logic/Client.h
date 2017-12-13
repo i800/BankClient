@@ -14,6 +14,7 @@
 #include "../Protocol/Packets/UserAuthPacket.h"
 #include "../Protocol/Packets/UserAuthResponsePacket.h"
 #include "../Protocol/Packets/UserLogoutPacket.h"
+#include "../Protocol/Packets/CancelPeriodicPaymentPacket.h"
 
 class Client : public QObject
 {
@@ -52,6 +53,7 @@ public slots:
     void requestForPayments(quint64);
     void requestForTransaction(quint64 from, quint64 to, quint64 amount,
                                quint64 time, QString& comment);
+    void requestForPCancelling(quint64);
 
     /**
      * Reactions for the server responses.
@@ -62,6 +64,7 @@ public slots:
     void reactCardsResponse();
     void reactPaymentsResponse();
     void reactTransactionResponse();
+    void reactPCancellingResponce();
     void reactOnDisruption();
 
     void abortAll();
@@ -75,6 +78,7 @@ signals:
     void gotAccountCardsAmount(uint);
     void gotPayments(QMap<quint64, QPair<quint64, quint64>>&);
     void gotTransactionSuccess(MakePaymentResponsePacket::PaymentStatus&);
+    void gotPCancellingSuccess();
     void error(QString);
 };
 

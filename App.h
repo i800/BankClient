@@ -5,6 +5,7 @@
 #include "GUI/AuthFrame.h"
 #include "GUI/MainWindow.h"
 #include "GUI/TransactionFrame.h"
+#include "GUI/PCancellingFrame.h"
 #include <QObject>
 
 class App : public QObject
@@ -17,6 +18,7 @@ private:
     AuthFrame _authFrame;
     MainWindow _mainWindow;
     TransactionFrame _transactionFrame;
+    PCancellingFrame _pCancellingFrame;
     // Deleted class members.
     App(const App&) = delete;
     App& operator=(const App&) = delete;
@@ -30,6 +32,7 @@ public slots:
      * has a prefix 'request'.
      */
     void requestForTransaction();
+    void requestForPCancelling();
 
     /** Reactions.
      * Each reaction has a prefix 'react'.

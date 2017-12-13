@@ -12,3 +12,24 @@ PCancellingFrame::~PCancellingFrame()
 {
     delete ui;
 }
+
+void PCancellingFrame::setIds()
+{
+
+}
+
+void PCancellingFrame::requestForPCancelling()
+{
+
+}
+
+void PCancellingFrame::reactForClose()
+{
+    ui->idChooser->clear();
+    this->close();
+}
+
+void PCancellingFrame::closeEvent(QCloseEvent*)
+{
+    emit callForClose();
+}

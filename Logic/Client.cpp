@@ -110,6 +110,14 @@ void Client::requestForTransaction(quint64 from, quint64 to, quint64 amount, qui
     _connection->flush();
 }
 
+void Client::requestForPCancelling(quint64 id)
+{
+    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactPCancellingResponce()));
+
+    _connection->write(CancelPeriodicPaymentPacket(_session, _terminalId, id).dump());
+    _connection->flush();
+}
+
 void Client::reactAuthResponse()
 {
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
@@ -192,6 +200,21 @@ void Client::reactTransactionResponse()
         response.load(arr);
         MakePaymentResponsePacket::PaymentStatus status = response.getPaymentStatus();
         emit gotTransactionSuccess(status);
+    }
+    else
+    {
+        emit error("Cannot make a transaction, please, retry do this action later.");
+    }
+}
+
+void Client::reactPCancellingResponce()
+{
+    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPCancellingResponse()));
+
+    QByteArray arr = _connection->readAll();
+    if (!processError(arr))
+    {
+        emit gotPCancellingSuccess();
     }
     else
     {

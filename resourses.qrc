@@ -6,5 +6,6 @@
         <file>Resourses/transaction.ico</file>
         <file>Resourses/title_icon.png</file>
         <file>Resourses/cancelling.png</file>
+        <file>Resourses/authors.png</file>
     </qresource>
 </RCC>

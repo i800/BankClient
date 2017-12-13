@@ -432,7 +432,7 @@ QPushButton:pressed {
     </property>
     <property name="icon">
      <iconset resource="../resourses.qrc">
-      <normaloff>:/icons/Resourses/cancelling.png</normaloff>:/icons/Resourses/cancelling.png</iconset>
+      <normaloff>:/icons/Resourses/authors.png</normaloff>:/icons/Resourses/authors.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -517,7 +517,7 @@ QPushButton:pressed {
    <sender>settingsButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>requestForPCancelling()</slot>
+   <slot>requestForAuthors()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>194</x>
@@ -540,5 +540,6 @@ QPushButton:pressed {
   <slot>requestForTransaction()</slot>
   <slot>requestForQuit()</slot>
   <slot>requestForPCancelling()</slot>
+  <slot>requestForAuthors()</slot>
  </slots>
 </ui>

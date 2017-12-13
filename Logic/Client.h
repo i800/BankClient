@@ -15,6 +15,7 @@
 #include "../Protocol/Packets/UserAuthResponsePacket.h"
 #include "../Protocol/Packets/UserLogoutPacket.h"
 #include "../Protocol/Packets/CancelPeriodicPaymentPacket.h"
+#include "ClientConfiguration.h"
 
 class Client : public QObject
 {
@@ -25,6 +26,9 @@ private:
     quint64 _cardNumber;
     quint32 _terminalId;
     QTcpSocket* _connection;
+    ClientConfiguration _configuration;
+    QString _host;
+    unsigned short _port;
     Client(const Client&) = delete;
     Client& operator=(const Client&) = delete;
     bool processError(const QByteArray&);
@@ -32,8 +36,8 @@ private:
 public:
     explicit Client();
     ~Client();
-    void start(const char* host = "localhost",
-               const unsigned short port = 45654);
+    void start();
+    void configureClient(const ClientConfiguration&);
     quint64 cardNumber() const { return _cardNumber; }
 
     quint32 terminalId() const

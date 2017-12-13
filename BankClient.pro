@@ -46,7 +46,8 @@ SOURCES += \
     Protocol/Packets/CancelPeriodicPayment.cpp \
     Protocol/Packets/SuccessPacket.cpp \
     Protocol/Packets/UserLogoutPacket.cpp \
-    GUI/PCancellingFrame.cpp
+    GUI/PCancellingFrame.cpp \
+    Logic/ClientConfiguration.cpp
 
 HEADERS += \
     GUI/MainWindow.h \
@@ -71,7 +72,8 @@ HEADERS += \
     Protocol/Packets/CancelPeriodicPaymentPacket.h \
     Protocol/Packets/SuccessPacket.h \
     Protocol/Packets/UserLogoutPacket.h \
-    GUI/PCancellingFrame.h
+    GUI/PCancellingFrame.h \
+    Logic/ClientConfiguration.h
 
 FORMS += \
     GUI/MainWindow.ui \

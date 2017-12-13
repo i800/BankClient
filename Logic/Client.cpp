@@ -5,6 +5,8 @@ Client::Client():
     _isPending(true),
     _connection(new QTcpSocket(this))
 {
+    configureClient(_configuration);
+
     // In case of failed connection.
     connect(_connection,
         QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
@@ -28,14 +30,20 @@ Client::~Client()
 #endif
 }
 
-void Client::start(const char* host, const unsigned short port)
+void Client::start()
 {
     _connection->abort();
-    _connection->connectToHost(host, port);
+    _connection->connectToHost(_host, _port);
     if (_connection->isOpen())
     {
         _isPending = false;
     }
+}
+
+void Client::configureClient(const ClientConfiguration& config)
+{
+    _host = config.address();
+    _port = config.serverPort();
 }
 
 void Client::abortAll()

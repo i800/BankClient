@@ -28,6 +28,7 @@ public slots:
      * has a prefix 'request'.
      */
     void requestForAccInfo();
+    void requestForAuthors();
     void requestForPeriodicalPaymentsIds();
     void requestForCards();
     void requestForTransaction();

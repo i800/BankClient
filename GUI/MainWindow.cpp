@@ -47,6 +47,11 @@ void MainWindow::requestForAccInfo()
     }
 }
 
+void MainWindow::requestForAuthors()
+{
+    QMessageBox::information(this, "Authors", "ANDREW GOMENYUK\nDMYTRO DEHTYARENKO\nUSATSCHOFF CYRIL\nKHODIENKO DANIEL");
+}
+
 void MainWindow::requestForPeriodicalPaymentsIds()
 {
     QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();

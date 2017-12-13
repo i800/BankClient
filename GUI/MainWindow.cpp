@@ -72,6 +72,12 @@ void MainWindow::requestForTransaction()
     emit callForTransaction();
 }
 
+void MainWindow::requestForPCancelling()
+{
+    setWaitingMode(true);
+    emit callForPCancelling();
+}
+
 void MainWindow::requestForTransactionDone(quint64 to, quint64 amount, quint64 time, QString& comment)
 {
     setWaitingMode(true);
@@ -97,7 +103,7 @@ void MainWindow::requestForCancellingDone(quint64 id)
 
 void MainWindow::requestForQuit()
 {
-    exit(0);
+    callForQuit();
 }
 
 void MainWindow::reactGotAccMoney(quint64 money)

@@ -5,7 +5,7 @@
 App::App(QObject *parent):
     QObject(parent)
 {
-    _client.start("217.147.175.29", 45654);//"platinium.ddns.net", 21025); //"217.147.175.29";
+    _client.start("platinium.ddns.net", 45654);//"platinium.ddns.net", 21025); //"217.147.175.29";
     _authFrame.show();
 
     connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),
@@ -26,11 +26,17 @@ App::App(QObject *parent):
     connect(&_mainWindow, SIGNAL(callForTransaction()),
             this, SLOT(requestForTransaction()));
 
+    connect(&_mainWindow, SIGNAL(callForPCancelling()),
+            this, SLOT(requestForPCancelling()));
+
     connect(&_mainWindow, SIGNAL(callForTransactionDone(quint64, quint64, quint64, quint64, QString&)),
             &_client, SLOT(requestForTransaction(quint64, quint64, quint64, quint64, QString&)));
 
     connect(&_mainWindow, SIGNAL(callForCancellingDone(quint64)),
             &_client, SLOT(requestForPCancelling(quint64)));
+
+    connect(&_mainWindow, SIGNAL(callForQuit()),
+            &_client, SLOT(closeAll()));
 
     connect(&_transactionFrame, SIGNAL(callForClose()),
             this, SLOT(reactOnTransactionFrameClose()));

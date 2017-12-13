@@ -31,6 +31,7 @@ public slots:
     void requestForPeriodicalPaymentsIds();
     void requestForCards();
     void requestForTransaction();
+    void requestForPCancelling();
     void requestForTransactionDone(quint64, quint64, quint64, QString&);
     void requestForCancellingDone(quint64);
     void requestForQuit();
@@ -56,8 +57,10 @@ signals:
     void callForPeriodicalPaymentsIds(quint64);
     void callForAccCards();
     void callForTransaction();
+    void callForPCancelling();
     void callForTransactionDone(quint64, quint64, quint64, quint64, QString&);
     void callForCancellingDone(quint64);
+    void callForQuit();
 };
 
 #endif // MAINWINDOW_H

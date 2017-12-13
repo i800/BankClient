@@ -102,6 +102,16 @@ void Client::requestForPayments(quint64 cardNumber)
     _connection->flush();
 }
 
+void Client::requestForPeriodicalPayments(quint64 cardNumber)
+{
+    connect(_connection, SIGNAL(readyRead()), this, SLOT(reactPeriodicalPaymentsResponse()));
+
+    GetPaymentsPacket packet(_session, _terminalId, cardNumber);
+    packet.setPaymentsType(GetPaymentsPacket::PERIODIC_PAYMENTS);
+    _connection->write(packet.dump());
+    _connection->flush();
+}
+
 void Client::requestForTransaction(quint64 from, quint64 to, quint64 amount, quint64 time, QString& comment)
 {
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactTransactionResponse()));
@@ -186,6 +196,24 @@ void Client::reactPaymentsResponse()
     else
     {
         emit error("Cannot get payments, please, retry do this action later.");
+    }
+}
+
+void Client::reactPeriodicalPaymentsResponse()
+{
+    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPeriodicalPaymentsResponse()));
+
+    QByteArray arr = _connection->readAll();
+    if (!processError(arr))
+    {
+        GetPaymentsResponsePacket response;
+        response.load(arr);
+        QMap<quint64, QPair<quint64, quint64>> payments(convertToMap(response));
+        emit gotPeriodicalPayments(payments);
+    }
+    else
+    {
+        emit error("Cannot get periodical payments, please, retry do this action later.");
     }
 }
 

@@ -28,6 +28,7 @@ public slots:
      * has a prefix 'request'.
      */
     void requestForAccInfo();
+    void requestForPeriodicalPaymentsIds();
     void requestForCards();
     void requestForTransaction();
     void requestForTransactionDone(quint64, quint64, quint64, QString&);
@@ -52,6 +53,7 @@ private:
 signals:
     void callForAccMoney(quint64);
     void callForPayments(quint64);
+    void callForPeriodicalPaymentsIds(quint64);
     void callForAccCards();
     void callForTransaction();
     void callForTransactionDone(quint64, quint64, quint64, quint64, QString&);

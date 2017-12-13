@@ -6,6 +6,7 @@ PCancellingFrame::PCancellingFrame(QWidget *parent) :
     ui(new Ui::PCancellingFrame)
 {
     ui->setupUi(this);
+    emit callForIds();
 }
 
 PCancellingFrame::~PCancellingFrame()
@@ -13,9 +14,14 @@ PCancellingFrame::~PCancellingFrame()
     delete ui;
 }
 
-void PCancellingFrame::setIds()
+void PCancellingFrame::setIds(QMap<quint64,QPair<quint64,quint64>>& payments)
 {
-
+    QMapIterator<quint64,QPair<quint64,quint64>> iter(payments);
+    while (iter.hasNext())
+    {
+        iter.next();
+        ui->idChooser->addItem(QString::number(iter.key()));
+    }
 }
 
 void PCancellingFrame::requestForPCancelling()

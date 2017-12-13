@@ -51,6 +51,7 @@ public slots:
     void requestForAccMoney(quint64);
     void requestForCards();
     void requestForPayments(quint64);
+    void requestForPeriodicalPayments(quint64);
     void requestForTransaction(quint64 from, quint64 to, quint64 amount,
                                quint64 time, QString& comment);
     void requestForPCancelling(quint64);
@@ -63,6 +64,7 @@ public slots:
     void reactAccMoneyResponse();
     void reactCardsResponse();
     void reactPaymentsResponse();
+    void reactPeriodicalPaymentsResponse();
     void reactTransactionResponse();
     void reactPCancellingResponce();
     void reactOnDisruption();
@@ -77,6 +79,7 @@ signals:
     void gotAccountCards(QMap<quint64, quint8>&);
     void gotAccountCardsAmount(uint);
     void gotPayments(QMap<quint64, QPair<quint64, quint64>>&);
+    void gotPeriodicalPayments(QMap<quint64, QPair<quint64, quint64>>&);
     void gotTransactionSuccess(MakePaymentResponsePacket::PaymentStatus&);
     void gotPCancellingSuccess();
     void error(QString);

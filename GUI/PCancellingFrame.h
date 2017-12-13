@@ -16,9 +16,6 @@ public:
     explicit PCancellingFrame(QWidget *parent = 0);
     ~PCancellingFrame();
 
-private:
-    void setIds();
-
 public slots:
     /**
      * Requests to the client.
@@ -32,8 +29,11 @@ public slots:
       */
     void reactForClose();
 
+    void setIds(QMap<quint64,QPair<quint64,quint64>>&);
+
 signals:
     void callForClose();
+    void callForIds();
     void callForPCancelling(quint64);
 
 private:

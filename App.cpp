@@ -14,6 +14,9 @@ App::App(QObject *parent):
     connect(&_mainWindow, SIGNAL(callForAccMoney(quint64)),
             &_client, SLOT(requestForAccMoney(quint64)));
 
+    connect(&_mainWindow, SIGNAL(callForPeriodicalPaymentsIds(quint64)),
+            &_client, SLOT(requestForPeriodicalPayments(quint64)));
+
     connect(&_mainWindow, SIGNAL(callForAccCards()),
             &_client, SLOT(requestForCards()));
 
@@ -34,6 +37,9 @@ App::App(QObject *parent):
 
     connect(&_transactionFrame, SIGNAL(callForTransaction(quint64, quint64, quint64, QString&)),
             &_mainWindow, SLOT(requestForTransactionDone(quint64, quint64, quint64, QString&)));
+
+    connect(&_pCancellingFrame, SIGNAL(callForIds()),
+            &_mainWindow, SLOT(requestForPeriodicalPaymentsIds()));
 
     connect(&_pCancellingFrame, SIGNAL(callForClose()),
             this, SLOT(reactOnTransactionFrameClose()));
@@ -58,6 +64,9 @@ App::App(QObject *parent):
 
     connect(&_client, SIGNAL(gotPayments(QMap<quint64, QPair<quint64, quint64>>&)),
             &_mainWindow, SLOT(reactGotPayments(QMap<quint64, QPair<quint64, quint64>>&)));
+
+    connect(&_client, SIGNAL(gotPeriodicalPayments(QMap<quint64,QPair<quint64,quint64>>&)),
+            &_pCancellingFrame, SLOT(setIds(QMap<quint64,QPair<quint64,quint64>>&)));
 
 #ifndef NDEBUG
     qDebug("App created.");

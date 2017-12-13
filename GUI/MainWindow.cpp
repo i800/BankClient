@@ -47,6 +47,19 @@ void MainWindow::requestForAccInfo()
     }
 }
 
+void MainWindow::requestForPeriodicalPaymentsIds()
+{
+    QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
+    if (cards.empty())
+    {
+        emit callForPeriodicalPaymentsIds(ui->loggedInCardValueLabel->text().toULongLong());
+    }
+    else
+    {
+        emit callForPeriodicalPaymentsIds(cards.first()->text().toULongLong());
+    }
+}
+
 void MainWindow::requestForCards()
 {
     setWaitingMode(true);

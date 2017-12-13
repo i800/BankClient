@@ -92,6 +92,7 @@ void App::requestForTransaction()
 void App::requestForPCancelling()
 {
     _pCancellingFrame.show();
+    _pCancellingFrame.setIds();
 }
 
 void App::reactAuthPassed()

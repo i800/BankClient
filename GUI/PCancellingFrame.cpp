@@ -6,12 +6,16 @@ PCancellingFrame::PCancellingFrame(QWidget *parent) :
     ui(new Ui::PCancellingFrame)
 {
     ui->setupUi(this);
-    emit callForIds();
 }
 
 PCancellingFrame::~PCancellingFrame()
 {
     delete ui;
+}
+
+void PCancellingFrame::setIds()
+{
+    emit callForIds();
 }
 
 void PCancellingFrame::setIds(QMap<quint64,QPair<quint64,quint64>>& payments)
@@ -26,7 +30,12 @@ void PCancellingFrame::setIds(QMap<quint64,QPair<quint64,quint64>>& payments)
 
 void PCancellingFrame::requestForPCancelling()
 {
+    // TODO: Cancel a periodical transaction.
+}
 
+void PCancellingFrame::requestForClose()
+{
+    emit callForClose();
 }
 
 void PCancellingFrame::reactForClose()

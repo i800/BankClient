@@ -15,6 +15,7 @@ class PCancellingFrame : public QFrame
 public:
     explicit PCancellingFrame(QWidget *parent = 0);
     ~PCancellingFrame();
+    void setIds();
 
 public slots:
     /**
@@ -23,6 +24,7 @@ public slots:
      * has a prefix 'request'.
      */
     void requestForPCancelling();
+    void requestForClose();
     /**
       * Reactions.
       * Each reaction has a prefix 'react'.

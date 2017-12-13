@@ -456,7 +456,7 @@ QPushButton:pressed {
    <slot>requestForAccInfo()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>194</x>
+     <x>294</x>
      <y>120</y>
     </hint>
     <hint type="destinationlabel">
@@ -513,6 +513,22 @@ QPushButton:pressed {
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>settingsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>requestForPCancelling()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>194</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>334</x>
+     <y>178</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <signal>buttonCh()</signal>
@@ -523,5 +539,6 @@ QPushButton:pressed {
   <slot>requestForPayments()</slot>
   <slot>requestForTransaction()</slot>
   <slot>requestForQuit()</slot>
+  <slot>requestForPCancelling()</slot>
  </slots>
 </ui>

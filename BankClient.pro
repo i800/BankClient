@@ -45,7 +45,8 @@ SOURCES += \
     GUI/TransactionFrame.cpp \
     Protocol/Packets/CancelPeriodicPayment.cpp \
     Protocol/Packets/SuccessPacket.cpp \
-    Protocol/Packets/UserLogoutPacket.cpp
+    Protocol/Packets/UserLogoutPacket.cpp \
+    GUI/PCancellingFrame.cpp
 
 HEADERS += \
     GUI/MainWindow.h \
@@ -69,12 +70,14 @@ HEADERS += \
     GUI/TransactionFrame.h \
     Protocol/Packets/CancelPeriodicPaymentPacket.h \
     Protocol/Packets/SuccessPacket.h \
-    Protocol/Packets/UserLogoutPacket.h
+    Protocol/Packets/UserLogoutPacket.h \
+    GUI/PCancellingFrame.h
 
 FORMS += \
     GUI/MainWindow.ui \
     GUI/AuthFrame.ui \
-    GUI/TransactionFrame.ui
+    GUI/TransactionFrame.ui \
+    GUI/PCancellingFrame.ui
 
 RESOURCES += \
     resourses.qrc

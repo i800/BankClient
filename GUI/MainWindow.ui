@@ -360,7 +360,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="refreshButton">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>220</x>
       <y>90</y>
       <width>91</width>
       <height>51</height>
@@ -402,7 +402,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="settingsButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>120</x>
       <y>90</y>
       <width>91</width>
       <height>51</height>
@@ -432,12 +432,12 @@ QPushButton:pressed {
     </property>
     <property name="icon">
      <iconset resource="../resourses.qrc">
-      <normaloff>:/icons/Resourses/setting_icon.png</normaloff>:/icons/Resourses/setting_icon.png</iconset>
+      <normaloff>:/icons/Resourses/cancelling.png</normaloff>:/icons/Resourses/cancelling.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>40</width>
-      <height>40</height>
+      <width>35</width>
+      <height>35</height>
      </size>
     </property>
    </widget>

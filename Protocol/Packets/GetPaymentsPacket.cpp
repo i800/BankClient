@@ -3,13 +3,15 @@
 GetPaymentsPacket::GetPaymentsPacket():
     _token(0),
     _machineId(0),
-    _cardNumber(0)
+    _cardNumber(0),
+    _paymentsType(0)
 {}
 
 GetPaymentsPacket::GetPaymentsPacket(quint64 token, quint32 machineId, quint64 carnNum):
     _token(token),
     _machineId(machineId),
-    _cardNumber(carnNum)
+    _cardNumber(carnNum),
+    _paymentsType(0)
 {}
 
 GetPaymentsPacket::PaymentsType GetPaymentsPacket::getTypeById(char id) const
@@ -41,6 +43,7 @@ QByteArray GetPaymentsPacket::specificDump() const
     data.append((char*)&_token, sizeof(_token));
     data.append((char*)&_machineId, sizeof(_machineId));
     data.append((char*)&_cardNumber, sizeof(_cardNumber));
+    data.append((char*)&_paymentsType, sizeof(_paymentsType));
     return data;
 }
 
@@ -49,4 +52,5 @@ void GetPaymentsPacket::specificLoad(QBuffer& data)
     data.read((char*)&_token, sizeof(_token));
     data.read((char*)&_machineId, sizeof(_machineId));
     data.read((char*)&_cardNumber, sizeof(_cardNumber));
+    data.read((char*)&_paymentsType, sizeof(_paymentsType));
 }

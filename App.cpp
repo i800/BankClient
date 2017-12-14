@@ -33,9 +33,6 @@ App::App(QObject *parent):
     connect(&_mainWindow, SIGNAL(callForTransactionDone(quint64, quint64, quint64, quint64, QString&)),
             &_client, SLOT(requestForTransaction(quint64, quint64, quint64, quint64, QString&)));
 
-    connect(&_mainWindow, SIGNAL(callForCancellingDone(quint64)),
-            &_client, SLOT(requestForPCancelling(quint64)));
-
     connect(&_mainWindow, SIGNAL(callForQuit()),
             &_client, SLOT(closeAll()));
 
@@ -52,7 +49,7 @@ App::App(QObject *parent):
             this, SLOT(reactOnTransactionFrameClose()));
 
     connect(&_pCancellingFrame, SIGNAL(callForPCancelling(quint64)),
-            &_mainWindow, SLOT(requestForCancellingDone(quint64)));
+            &_client, SLOT(requestForPCancelling(quint64)));
 
     connect(&_client, SIGNAL(disruption()), this, SLOT(reactDisruption()));
 
@@ -72,8 +69,8 @@ App::App(QObject *parent):
     connect(&_client, SIGNAL(gotPayments(QMap<quint64, QPair<quint64, quint64>>&)),
             &_mainWindow, SLOT(reactGotPayments(QMap<quint64, QPair<quint64, quint64>>&)));
 
-    connect(&_client, SIGNAL(gotPeriodicalPayments(QMap<quint64,QPair<quint64,quint64>>&)),
-            &_pCancellingFrame, SLOT(setIds(QMap<quint64,QPair<quint64,quint64>>&)));
+    connect(&_client, SIGNAL(gotPeriodicalPayments(QMap<quint64, QPair<quint64, quint64>>&)),
+            &_pCancellingFrame, SLOT(setIds(QMap<quint64, QPair<quint64, quint64>>&)));
 
 #ifndef NDEBUG
     qDebug("App created.");

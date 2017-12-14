@@ -114,12 +114,6 @@ void MainWindow::requestForTransactionDone(quint64 to, quint64 amount, quint64 t
     emit callForTransactionDone(from, to, amount, time, comment);
 }
 
-void MainWindow::requestForCancellingDone(quint64 id)
-{
-    setWaitingMode(true);
-    emit callForCancellingDone(id);
-}
-
 void MainWindow::requestForQuit()
 {
     callForQuit();

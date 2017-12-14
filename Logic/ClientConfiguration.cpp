@@ -29,7 +29,7 @@ void ClientConfiguration::loadConfiguration(const QString& filename)
 void ClientConfiguration::loadConfiguration(const QString& filename) const
 {
     QSettings settings(filename, QSettings::IniFormat);
-    _address = settings.value("address", "platinium.ddns.net").toString();
+    _address = settings.value("address", "localhost").toString();
     _serverPort = settings.value("port", 45654).toInt();
 }
 

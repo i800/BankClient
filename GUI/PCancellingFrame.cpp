@@ -1,5 +1,6 @@
 #include "PCancellingFrame.h"
 #include "ui_PCancellingFrame.h"
+#include <QMessageBox>
 
 PCancellingFrame::PCancellingFrame(QWidget *parent) :
     QFrame(parent),
@@ -30,12 +31,24 @@ void PCancellingFrame::setIds(QMap<quint64,QPair<quint64,quint64>>& payments)
 
 void PCancellingFrame::requestForPCancelling()
 {
-    // TODO: Cancel a periodical transaction.
+    bool idOk(false);
+    quint64 id = ui->idChooser->currentText().toULongLong(&idOk);
+    if (idOk)
+    {
+        emit callForPCancelling(id);
+    }
+    else
+    {
+        QMessageBox::information(0, "Error", "Check the input.");
+    }
+
+    requestForClose();
 }
 
 void PCancellingFrame::requestForClose()
 {
     emit callForClose();
+    reactForClose();
 }
 
 void PCancellingFrame::reactForClose()
@@ -47,4 +60,5 @@ void PCancellingFrame::reactForClose()
 void PCancellingFrame::closeEvent(QCloseEvent*)
 {
     emit callForClose();
+    reactForClose();
 }

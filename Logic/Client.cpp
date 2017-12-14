@@ -22,6 +22,27 @@ Client::Client():
 #endif
 }
 
+Client::Client(const ClientConfiguration& config):
+    _isPending(true),
+    _connection(new QTcpSocket(this)),
+    _configuration(config)
+{
+    configureClient(_configuration);
+
+    // In case of failed connection.
+    connect(_connection,
+        QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error),
+        this, &Client::reactOnDisruption);
+
+    connect(_connection, SIGNAL(aboutToClose()), this, SLOT(closeAll()));
+
+    connect(_connection, SIGNAL(disconnected()), this, SLOT(abortAll()));
+
+#ifndef NDEBUG
+    qDebug("Client created.");
+#endif
+}
+
 Client::~Client()
 {
     delete _connection;
@@ -63,14 +84,6 @@ void Client::closeAll()
         _connection->write(UserLogoutPacket(_session, _terminalId).dump());
         _connection->flush();
     }
-    //_connection->waitForBytesWritten(4000000000);
-    //_connection->close();
-
-//#ifndef NDEBUG
-//    qDebug("Correct exit.");
-//#endif
-
-//    exit(0);
 }
 
 bool Client::processError(const QByteArray& arr)

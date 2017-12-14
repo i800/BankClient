@@ -4,11 +4,9 @@
 
 TransactionFrame::TransactionFrame(QWidget *parent):
     QFrame(parent),
-    ui(new Ui::TransactionFrame),
-    _firstInit(true)
+    ui(new Ui::TransactionFrame)
 {
     ui->setupUi(this);
-    ui->cardChooser->addItem("");
 }
 
 TransactionFrame::~TransactionFrame()
@@ -23,8 +21,6 @@ void TransactionFrame::setCards(const QList<QString>& cardsList)
     {
         ui->cardChooser->addItem(iter.next());
     }
-
-    _firstInit = false;
 }
 
 void TransactionFrame::requestForTransaction()
@@ -49,7 +45,7 @@ void TransactionFrame::requestForTransaction()
 
 void TransactionFrame::reactForClose()
 {
-//    ui->cardChooser->
+    ui->cardChooser->clear();
     ui->amountSB->setValue(0);
     ui->timeSB->setValue(0);
     ui->commentArea->clear();
@@ -59,4 +55,5 @@ void TransactionFrame::reactForClose()
 void TransactionFrame::closeEvent(QCloseEvent*)
 {
     emit callForClose();
+    reactForClose();
 }

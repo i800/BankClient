@@ -10,7 +10,9 @@ AuthFrame::AuthFrame(QWidget *parent):
     this->setWindowFlags(Qt::FramelessWindowHint
                        | Qt::WindowStaysOnBottomHint);
 
-    QMessageBox::information(this, "DEBUG MODE", "TO TEST THE PROGRAM\nUSE CARD 1 WITH PASSWORD PIN1.");
+#ifndef NDEBUG
+    QMessageBox::information(0, "DEBUG MODE", "TO TEST THE PROGRAM\nUSE CARD 1 WITH PASSWORD PIN1.");
+#endif
 }
 
 AuthFrame::~AuthFrame()
@@ -30,6 +32,8 @@ void AuthFrame::requestForAuth()
 {
     QString cardnum = ui->in_cardNum->text();
     QString pass = ui->in_password->text();
+//    qDebug("pass:");
+//    qDebug(pass.toStdString().c_str());
     bool cardnumOk(false);
     quint64 cardnumConv = cardnum.toULongLong(&cardnumOk);
     if (cardnumOk && pass.length() == 4)

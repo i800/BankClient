@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
+    <width>693</width>
     <height>423</height>
    </rect>
   </property>
@@ -228,7 +228,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="cardsButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>420</x>
       <y>20</y>
       <width>229</width>
       <height>31</height>
@@ -254,7 +254,7 @@ QPushButton:pressed {
    <widget class="QListWidget" name="cardsView">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>420</x>
       <y>58</y>
       <width>229</width>
       <height>241</height>
@@ -272,7 +272,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="quitButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>420</x>
       <y>310</y>
       <width>229</width>
       <height>41</height>
@@ -318,7 +318,7 @@ QPushButton:pressed {
      <rect>
       <x>20</x>
       <y>200</y>
-      <width>291</width>
+      <width>391</width>
       <height>151</height>
      </rect>
     </property>
@@ -336,7 +336,7 @@ QPushButton:pressed {
      <rect>
       <x>20</x>
       <y>160</y>
-      <width>291</width>
+      <width>391</width>
       <height>31</height>
      </rect>
     </property>
@@ -402,7 +402,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="settingsButton">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>320</x>
       <y>90</y>
       <width>91</width>
       <height>51</height>
@@ -438,6 +438,48 @@ QPushButton:pressed {
      <size>
       <width>35</width>
       <height>35</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cpButton">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>90</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Refresh (manually)</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(81, 81, 81);
+    color: white;
+    border-style: none;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+     background-color: rgb(120, 120, 120);     
+}
+
+QPushButton:pressed {
+     background-color: rgb(150, 150, 150);     
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../resourses.qrc">
+      <normaloff>:/icons/Resourses/cancelling.png</normaloff>:/icons/Resourses/cancelling.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
      </size>
     </property>
    </widget>
@@ -488,7 +530,7 @@ QPushButton:pressed {
    <slot>requestForQuit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>375</x>
+     <x>445</x>
      <y>335</y>
     </hint>
     <hint type="destinationlabel">
@@ -520,12 +562,28 @@ QPushButton:pressed {
    <slot>requestForAuthors()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>194</x>
+     <x>394</x>
      <y>130</y>
     </hint>
     <hint type="destinationlabel">
      <x>334</x>
      <y>178</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cpButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>requestForPCancelling()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>28</y>
     </hint>
    </hints>
   </connection>

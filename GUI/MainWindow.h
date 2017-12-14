@@ -21,6 +21,8 @@ public:
         return _cardsList;
     }
 
+    quint64 currentCard() const;
+
 public slots:
     /**
      * Requests to the client.
@@ -34,7 +36,6 @@ public slots:
     void requestForTransaction();
     void requestForPCancelling();
     void requestForTransactionDone(quint64, quint64, quint64, QString&);
-    void requestForCancellingDone(quint64);
     void requestForQuit();
 
     /**
@@ -60,7 +61,6 @@ signals:
     void callForTransaction();
     void callForPCancelling();
     void callForTransactionDone(quint64, quint64, quint64, quint64, QString&);
-    void callForCancellingDone(quint64);
     void callForQuit();
 };
 

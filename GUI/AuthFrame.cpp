@@ -10,7 +10,9 @@ AuthFrame::AuthFrame(QWidget *parent):
     this->setWindowFlags(Qt::FramelessWindowHint
                        | Qt::WindowStaysOnBottomHint);
 
+#ifndef NDEBUG
     QMessageBox::information(0, "DEBUG MODE", "TO TEST THE PROGRAM\nUSE CARD 1 WITH PASSWORD PIN1.");
+#endif
 }
 
 AuthFrame::~AuthFrame()

@@ -17,11 +17,6 @@ public:
     ~TransactionFrame();
     void setCards(const QList<QString>&);
 
-    bool firstInit() const
-    {
-        return _firstInit;
-    }
-
 public slots:
     /**
      * Requests to the client.
@@ -42,7 +37,6 @@ signals:
 private:
     Ui::TransactionFrame *ui;
     void closeEvent(QCloseEvent*);
-    bool _firstInit;
 };
 
 #endif // TRANSACTIONFRAME_H

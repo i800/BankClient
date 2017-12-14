@@ -83,12 +83,9 @@ App::App(QObject *parent):
 void App::requestForTransaction()
 {
     _transactionFrame.show();
-    if (_transactionFrame.firstInit())
-    {
-        QList<QString> temp(_mainWindow.cardsList());
-        temp.removeAll(QString::number(_mainWindow.currentCard()));
-        _transactionFrame.setCards(temp);
-    }
+    QList<QString> temp(_mainWindow.cardsList());
+    temp.removeAll(QString::number(_mainWindow.currentCard()));
+    _transactionFrame.setCards(temp);
 }
 
 void App::requestForPCancelling()

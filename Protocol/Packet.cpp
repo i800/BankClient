@@ -69,7 +69,7 @@ char Packet::getPacketId(const QByteArray& byteArray)
 
 unsigned short Packet::getPacketSize(const QByteArray& byteArray)
 {
-    return *(reinterpret_cast<const unsigned short*>(byteArray.data()+1)); // + sizeof(char) + sizeof(short)
+    return *(reinterpret_cast<const unsigned short*>(byteArray.data()+1));
 }
 
 //virtual method

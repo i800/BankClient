@@ -33,6 +33,7 @@ private:
     Client& operator=(const Client&) = delete;
     bool processError(const QByteArray&);
     quint32 getTerminalId();
+    QByteArray readPacket();
 public:
     explicit Client();
     Client(const ClientConfiguration&);
@@ -79,7 +80,7 @@ public slots:
 signals:
     void disruption();
     void authPassed();
-    void authFailed();
+    void authFailed(QString);
     void gotAccountMoney(quint64);
     void gotAccountCards(QMap<quint64, quint8>&);
     void gotAccountCardsAmount(uint);

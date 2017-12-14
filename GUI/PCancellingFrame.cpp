@@ -21,7 +21,8 @@ void PCancellingFrame::setIds()
 void PCancellingFrame::setIds(QMap<quint64,QPair<quint64,quint64>>& payments)
 {
     QMapIterator<quint64,QPair<quint64,quint64>> iter(payments);
-    while (iter.hasNext())
+    ui->idChooser->clear();
+    while(iter.hasNext())
     {
         iter.next();
         ui->idChooser->addItem(QString::number(iter.key()));

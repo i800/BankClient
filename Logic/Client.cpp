@@ -164,12 +164,22 @@ void Client::requestForPCancelling(quint64 id)
     _connection->flush();
 }
 
+QByteArray Client::readPacket()
+{
+    QByteArray result = _connection->readAll();
+    while(!Packet::isPacket(result))
+    {
+        _connection->waitForReadyRead();
+        result.append(_connection->readAll());
+    }
+    return result;
+}
+
 void Client::reactAuthResponse()
 {
+    QByteArray arr = readPacket();
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactAuthResponse()));
-
-    QByteArray arr = _connection->readAll();
-    if (!processError(arr))
+    if(Packet::getPacketId(arr) != 0)
     {
         UserAuthResponsePacket response;
         response.load(arr);
@@ -178,16 +188,18 @@ void Client::reactAuthResponse()
     }
     else
     {
-        emit authFailed();
+        ErrorPacket pack;
+        pack.load(arr);
+        emit error(pack.info());
+        //emit authFailed();
     }
 }
 
 void Client::reactAccMoneyResponse()
 {
+    QByteArray arr = readPacket();
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactAccMoneyResponse()));
-
-    QByteArray arr = _connection->readAll();
-    if (!processError(arr))
+    if(Packet::getPacketId(arr) != 0)
     {
         GetAccountMoneyResponsePacket response;
         response.load(arr);
@@ -196,16 +208,18 @@ void Client::reactAccMoneyResponse()
     }
     else
     {
-        emit error("Cannot get account money, please, retry do this action later.");
+        ErrorPacket pack;
+        pack.load(arr);
+        emit error(pack.info());
+        //emit authFailed();
     }
 }
 
 void Client::reactCardsResponse()
 {
+    QByteArray arr = readPacket();
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactCardsResponse()));
-
-    QByteArray arr = _connection->readAll();
-    if (!processError(arr))
+    if(Packet::getPacketId(arr) != 0)
     {
         GetCardsResponsePacket response;
         response.load(arr);
@@ -213,16 +227,17 @@ void Client::reactCardsResponse()
     }
     else
     {
-        emit error("Cannot get account cards, please, retry do this action later.");
+        ErrorPacket pack;
+        pack.load(arr);
+        emit authFailed(pack.info());
     }
 }
 
 void Client::reactPaymentsResponse()
 {
+    QByteArray arr = readPacket();
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPaymentsResponse()));
-
-    QByteArray arr = _connection->readAll();
-    if (!processError(arr))
+    if(Packet::getPacketId(arr) != 0)
     {
         GetPaymentsResponsePacket response;
         response.load(arr);
@@ -231,16 +246,18 @@ void Client::reactPaymentsResponse()
     }
     else
     {
-        emit error("Cannot get payments, please, retry do this action later.");
+        ErrorPacket pack;
+        pack.load(arr);
+        emit error(pack.info());
+        //emit authFailed();
     }
 }
 
 void Client::reactPeriodicalPaymentsResponse()
 {
+    QByteArray arr = readPacket();
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPeriodicalPaymentsResponse()));
-
-    QByteArray arr = _connection->readAll();
-    if (!processError(arr))
+    if(Packet::getPacketId(arr) != 0)
     {
         GetPaymentsResponsePacket response;
         response.load(arr);
@@ -249,16 +266,18 @@ void Client::reactPeriodicalPaymentsResponse()
     }
     else
     {
-        emit error("Cannot get periodical payments, please, retry do this action later.");
+        ErrorPacket pack;
+        pack.load(arr);
+        emit error(pack.info());
+        //emit authFailed();
     }
 }
 
 void Client::reactTransactionResponse()
 {
+    QByteArray arr = readPacket();
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactTransactionResponse()));
-
-    QByteArray arr = _connection->readAll();
-    if (!processError(arr))
+    if(Packet::getPacketId(arr) != 0)
     {
         MakePaymentResponsePacket response;
         response.load(arr);
@@ -267,22 +286,27 @@ void Client::reactTransactionResponse()
     }
     else
     {
-        emit error("Cannot make a transaction, please, retry do this action later.");
+        ErrorPacket pack;
+        pack.load(arr);
+        emit error(pack.info());
+        //emit error("Cannot make a transaction, please, retry do this action later.");
     }
 }
 
 void Client::reactPCancellingResponce()
 {
+    QByteArray arr = readPacket();
     disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPCancellingResponse()));
-
-    QByteArray arr = _connection->readAll();
-    if (!processError(arr))
+    if(Packet::getPacketId(arr) != 0)
     {
         emit gotPCancellingSuccess();
     }
     else
     {
-        emit error("Cannot make a transaction, please, retry do this action later.");
+        ErrorPacket pack;
+        pack.load(arr);
+        emit error(pack.info());
+        //emit error("Cannot make a transaction, please, retry do this action later.");
     }
 }
 

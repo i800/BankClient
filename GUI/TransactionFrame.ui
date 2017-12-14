@@ -109,6 +109,9 @@ QPushButton:pressed {
     border-radius: 15px;
 }</string>
    </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
@@ -216,6 +219,9 @@ QPushButton:pressed {
     border-radius: 15px;
 }</string>
    </property>
+   <property name="maximum">
+    <number>1000000000</number>
+   </property>
   </widget>
   <widget class="QSpinBox" name="amountSB">
    <property name="geometry">
@@ -238,6 +244,9 @@ QPushButton:pressed {
     border-style: none;
     border-radius: 15px;
 }</string>
+   </property>
+   <property name="maximum">
+    <number>1000000000</number>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">

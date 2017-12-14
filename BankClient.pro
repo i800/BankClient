@@ -83,3 +83,6 @@ FORMS += \
 
 RESOURCES += \
     resourses.qrc
+
+DISTFILES += \
+    WinDeploy.bat

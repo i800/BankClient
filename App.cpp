@@ -6,7 +6,7 @@ App::App(QObject *parent):
     QObject(parent),
     _client(ClientConfiguration("config.ini"))
 {
-    _client.start(); //"217.147.175.29";
+    _client.start();
     _authFrame.show();
 
     connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),

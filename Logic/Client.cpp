@@ -78,13 +78,12 @@ void Client::closeAll()
     _connection->write(UserLogoutPacket(_session, _terminalId).dump());
     _connection->flush();
     _connection->waitForBytesWritten();
-    _connection->close();
 
 #ifndef NDEBUG
     qDebug("Correct exit.");
 #endif
 
-    exit(0);
+    exit(0); //TODO Show login window
 }
 
 bool Client::processError(const QByteArray& arr)

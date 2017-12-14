@@ -34,6 +34,7 @@ quint64 MainWindow::currentCard() const
 void MainWindow::setWaitingMode(const bool mode)
 {
     ui->makeTransactionButton->setDisabled(mode);
+    ui->cpButton->setDisabled(mode);
     ui->refreshButton->setDisabled(mode);
     ui->settingsButton->setDisabled(mode);
     ui->cardsView->setDisabled(mode);

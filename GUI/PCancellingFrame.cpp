@@ -36,6 +36,7 @@ void PCancellingFrame::requestForPCancelling()
 void PCancellingFrame::requestForClose()
 {
     emit callForClose();
+    reactForClose();
 }
 
 void PCancellingFrame::reactForClose()

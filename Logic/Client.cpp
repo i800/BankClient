@@ -158,10 +158,12 @@ void Client::requestForTransaction(quint64 from, quint64 to, quint64 amount, qui
 
 void Client::requestForPCancelling(quint64 id)
 {
+    qDebug("requestForPCancelling");
     connect(_connection, SIGNAL(readyRead()), this, SLOT(reactPCancellingResponce()));
 
     _connection->write(CancelPeriodicPaymentPacket(_session, _terminalId, id).dump());
     _connection->flush();
+    qDebug("end requestForPCancelling");
 }
 
 QByteArray Client::readPacket()
@@ -210,7 +212,6 @@ void Client::reactAccMoneyResponse()
         ErrorPacket pack;
         pack.load(arr);
         emit error(pack.info());
-        //emit authFailed();
     }
 }
 
@@ -294,19 +295,20 @@ void Client::reactTransactionResponse()
 
 void Client::reactPCancellingResponce()
 {
-    QByteArray arr = readPacket();
-    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPCancellingResponse()));
-    if(Packet::getPacketId(arr) != 0)
-    {
-        emit gotPCancellingSuccess();
-    }
-    else
-    {
-        ErrorPacket pack;
-        pack.load(arr);
-        emit error(pack.info());
-        //emit error("Cannot make a transaction, please, retry do this action later.");
-    }
+    qDebug("reactPCresponce");
+//    QByteArray arr = readPacket();
+//    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactPCancellingResponse()));
+//    if(Packet::getPacketId(arr) != 0)
+//    {
+//        emit gotPCancellingSuccess();
+//    }
+//    else
+//    {
+//        ErrorPacket pack;
+//        pack.load(arr);
+//        emit error(pack.info());
+//        //emit error("Cannot make a transaction, please, retry do this action later.");
+//    }
 }
 
 void Client::reactOnDisruption()

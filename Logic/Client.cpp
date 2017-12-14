@@ -190,8 +190,7 @@ void Client::reactAuthResponse()
     {
         ErrorPacket pack;
         pack.load(arr);
-        emit error(pack.info());
-        //emit authFailed();
+        emit authFailed();
     }
 }
 
@@ -229,7 +228,7 @@ void Client::reactCardsResponse()
     {
         ErrorPacket pack;
         pack.load(arr);
-        emit authFailed(pack.info());
+        emit authFailed();
     }
 }
 

@@ -83,7 +83,7 @@ public slots:
 signals:
     void disruption();
     void authPassed();
-    void authFailed(QString);
+    void authFailed();
     void gotAccountMoney(quint64);
     void gotAccountCards(QMap<quint64, quint8>&);
     void gotAccountCardsAmount(uint);

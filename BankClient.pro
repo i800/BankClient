@@ -54,7 +54,6 @@ HEADERS += \
     Logic/Client.h \
     App.h \
     GUI/AuthFrame.h \
-#    Protocol/Processors/UserAuthProcessor.h \
     Protocol/Packet.h \
     Protocol/PacketsList.h \
     Protocol/Packets/MakePaymentPacket.h \

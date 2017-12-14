@@ -22,7 +22,7 @@ ClientConfiguration::~ClientConfiguration()
 void ClientConfiguration::loadConfiguration(const QString& filename)
 {
     QSettings settings(filename, QSettings::IniFormat);
-    _address = settings.value("address", "localhost").toString();
+    _address = settings.value("address", "127.0.0.1"/*"platinium.ddns.net"*/).toString();
     _serverPort = settings.value("port", 45654).toInt();
 }
 

@@ -83,3 +83,4 @@ FORMS += \
 
 RESOURCES += \
     resourses.qrc
+#CONFIG += static

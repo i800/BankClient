@@ -3,7 +3,8 @@
 
 Client::Client():
     _isPending(true),
-    _connection(new QTcpSocket(this))
+    _connection(new QTcpSocket(this)),
+    _logout_send_when_close(1)
 {
     configureClient(_configuration);
 
@@ -54,16 +55,22 @@ void Client::abortAll()
 
 void Client::closeAll()
 {
-    _connection->write(UserLogoutPacket(_session, _terminalId).dump());
-    _connection->flush();
-    _connection->waitForBytesWritten();
-    _connection->close();
+    if(_logout_send_when_close)
+    {
+        _logout_send_when_close=false;
+        connect(_connection, SIGNAL(readyRead()), this, SLOT(reactSuccessLogout()));
 
-#ifndef NDEBUG
-    qDebug("Correct exit.");
-#endif
+        _connection->write(UserLogoutPacket(_session, _terminalId).dump());
+        _connection->flush();
+    }
+    //_connection->waitForBytesWritten(4000000000);
+    //_connection->close();
 
-    exit(0);
+//#ifndef NDEBUG
+//    qDebug("Correct exit.");
+//#endif
+
+//    exit(0);
 }
 
 bool Client::processError(const QByteArray& arr)
@@ -273,6 +280,17 @@ void Client::reactOnDisruption()
 #ifndef NDEBUG
     qFatal("Connection disrupted.");
 #endif
+}
+
+void Client::reactSuccessLogout()
+{
+    disconnect(_connection, SIGNAL(readyRead()), this, SLOT(reactSuccessLogout()));
+
+#ifndef NDEBUG
+    qDebug("Correct exit.");
+#endif
+//    _connection->close();
+    exit(0);
 }
 
 QMap<quint64, QPair<quint64, quint64>> convertToMap(const GetPaymentsResponsePacket& packet)

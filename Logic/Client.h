@@ -29,6 +29,7 @@ private:
     ClientConfiguration _configuration;
     QString _host;
     unsigned short _port;
+    bool _logout_send_when_close;
     Client(const Client&) = delete;
     Client& operator=(const Client&) = delete;
     bool processError(const QByteArray&);
@@ -72,6 +73,8 @@ public slots:
     void reactTransactionResponse();
     void reactPCancellingResponce();
     void reactOnDisruption();
+//    DD
+    void reactSuccessLogout();
 
     void abortAll();
     void closeAll();

@@ -35,6 +35,7 @@ private:
     quint32 getTerminalId();
 public:
     explicit Client();
+    Client(const ClientConfiguration&);
     ~Client();
     void start();
     void configureClient(const ClientConfiguration&);

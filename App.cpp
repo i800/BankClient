@@ -3,7 +3,8 @@
 #include <QMessageBox>
 
 App::App(QObject *parent):
-    QObject(parent)
+    QObject(parent),
+    _client(ClientConfiguration("config.ini"))
 {
     _client.start();//"platinium.ddns.net", 21025); //"217.147.175.29";
     _authFrame.show();

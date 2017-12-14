@@ -26,14 +26,16 @@ void PCancellingFrame::setIds(QMap<quint64,QPair<quint64,quint64>>& payments)
     while(iter.hasNext())
     {
         iter.next();
-        ui->idChooser->addItem(QString::number(iter.key()));
+        const QPair<quint64, quint64>& val = iter.value();
+        ui->idChooser->addItem(QString("%1 CUU to %2").arg(QString::number(val.first),QString::number(val.first)), iter.key());
+        //ui->idChooser->addItem(QString::number(iter.key()));
     }
 }
 
 void PCancellingFrame::requestForPCancelling()
 {
     bool idOk(false);
-    quint64 id = ui->idChooser->currentText().toULongLong(&idOk);
+    quint64 id = ui->idChooser->currentData().toULongLong(&idOk);
     if (idOk)
     {
         emit callForPCancelling(id);

@@ -73,7 +73,7 @@ public slots:
     void reactPaymentsResponse();
     void reactPeriodicalPaymentsResponse();
     void reactTransactionResponse();
-    void reactPCancellingResponce();
+    void reactPCancellingResponse();
     void reactOnDisruption();
 //    DD
     void reactSuccessLogout();

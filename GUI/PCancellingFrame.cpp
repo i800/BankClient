@@ -56,7 +56,6 @@ void PCancellingFrame::requestForClose()
 
 void PCancellingFrame::reactForClose()
 {
-    ui->idChooser->clear();
     this->close();
 }
 

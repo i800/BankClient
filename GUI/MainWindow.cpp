@@ -18,6 +18,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+quint64 MainWindow::currentCard() const
+{
+    QList<QListWidgetItem*> cards = ui->cardsView->selectedItems();
+    if (cards.empty())
+    {
+        return ui->loggedInCardValueLabel->text().toULongLong();
+    }
+    else
+    {
+        return cards.first()->text().toULongLong();
+    }
+}
+
 void MainWindow::setWaitingMode(const bool mode)
 {
     ui->makeTransactionButton->setDisabled(mode);

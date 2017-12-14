@@ -21,6 +21,8 @@ public:
         return _cardsList;
     }
 
+    quint64 currentCard() const;
+
 public slots:
     /**
      * Requests to the client.

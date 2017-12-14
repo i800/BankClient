@@ -6,7 +6,7 @@ App::App(QObject *parent):
     QObject(parent),
     _client(ClientConfiguration("config.ini"))
 {
-    _client.start();//"platinium.ddns.net", 21025); //"217.147.175.29";
+    _client.start(); //"217.147.175.29";
     _authFrame.show();
 
     connect(&_authFrame, SIGNAL(callForAuth(quint64, QString)),
@@ -86,6 +86,7 @@ void App::requestForTransaction()
     if (_transactionFrame.firstInit())
     {
         QList<QString> temp(_mainWindow.cardsList());
+        temp.removeAll(QString::number(_mainWindow.currentCard()));
         _transactionFrame.setCards(temp);
     }
 }
